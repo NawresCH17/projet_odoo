@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+<!--Claim-->
+        <record id="claim_tree_view" model="ir.ui.view">
+            <field name="name">claim.claim.tree</field>
+            <field name="model">claim.claim</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Reclamation">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="reg_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="claim_form_view" model="ir.ui.view">
+            <field name="name">claim.claim.form</field>
+            <field name="model">claim.claim</field>
+            <field name="arch" type="xml">
+                <form string="Reclamation">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="start_date"/>
+                                <field name="reg_id"/>
+                                <field name="state"/>
+                                <!--                         <field name="amount"/>-->
+                                <!--                         <field name="hours_nbr"/>-->
+                                <!--                         <field name="total"/>-->
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="end_date"/>
+<!--                                <field name="student_id"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--claim.claim:calendar view-->
+        <record id="claim_calendar_view" model="ir.ui.view">
+            <field name="name">claim.claim.calendar</field>
+            <field name="model">claim.claim</field>
+            <field name="arch" type="xml">
+                <calendar string="Reclamation" date_start="start_date" color="user_id">
+                    <field name="name"/>
+                    <field name="code"/>
+                </calendar>
+            </field>
+        </record>
+        <!--claim.claim:search views-->
+        <record id="claim_request_view_search" model="ir.ui.view">
+            <field name="name">claim.claim.search</field>
+            <field name="model">claim.claim</field>
+            <field name="arch" type="xml">
+                <search string="DescriptionSearch">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="reg_id"/>
+                    <separator/>
+                    <filter string="Nouvelle" name="new" domain="[('state','=','new')]"/>
+                    <filter string="Validée" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Annulée" name="cancel" domain="[('state','=','cancel')]"/>
+
+<!--                    <group expand="0" string="Group By">-->
+<!--                        <filter string="responable" name="Student" context="{'group_by': 'student_id'}"/>-->
+<!--                        <filter string="inscription" name="inscri" context="{'group_by': 'reg_id'}"/>-->
+<!--                    </group>-->
+                </search>
+            </field>
+        </record>
+        <!--     graph view for claim  -->
+        <record id="claim_graph_view" model="ir.ui.view">
+            <field name="name">claim.claim.graph</field>
+            <field name="model">claim.claim</field>
+            <field name="arch" type="xml">
+                <graph string="Graph">
+                    <field name="state"/>
+                    <field name="name"/>
+                </graph>
+            </field>
+        </record>
+        <!--     pivot view for claim doc-->
+        <record id="claim_view_pivot" model="ir.ui.view">
+            <field name="name">claim.claim.pivot</field>
+            <field name="model">claim.claim</field>
+            <field name="arch" type="xml">
+                <pivot string="Description">
+                    <field name="state"/>
+                    <field name="name"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="claim_action_view">
+            <field name="name">Reclamation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">claim.claim</field>
+        </record>
+    </data>
+</odoo>

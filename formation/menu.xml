@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <menuitem
+            id="formation.module_root_aze"
+            name="University"/>
+             <menuitem id="Dashboard_menu"
+              name="Dashboard"
+              parent="formation.module_root_aze"
+              />
+             <menuitem id="student_menu001"
+              name="Students"
+              parent="formation.module_root_aze"
+              action="eleve_menu_action"
+              sequence='2'/>
+          <menuitem id="administration_menu"
+                    name="Administration"
+                    parent="formation.module_root_aze"
+                    sequence='1'/>
+               <menuitem id="prof_menu"
+                 name=" Teacher"
+                 parent="administration_menu"
+                 />
+               <menuitem id="prof_menu001"
+                 name=" Teacher"
+                 parent="prof_menu"
+                 action="teacher_action_view"
+                         sequence="1"
+                 />
+                   <menuitem id="attendance_menu"
+                     name=" Attendance"
+                     parent="prof_menu"
+                     action="hr_attendance.hr_attendance_action"
+                   />
+
+               <menuitem id="personnel_menu"
+                 name="Personnel Administrative"
+                 parent="administration_menu"
+                 action="personnel_menu_action"
+                 />
+          <menuitem id="module_root_menu123"
+              parent="formation.module_root_aze"
+              name="Formation"
+              sequence="3"/>
+            <menuitem id="module_menu001"
+              name="module"
+              parent="module_root_menu123"
+              action="module_action_view_test"/>
+            <menuitem id="section_menu"
+              name="Section"
+              parent="module_root_menu123"
+              action="section_action_view_test"/>
+            <menuitem id="level_menu"
+              name="Level"
+              parent="module_root_menu123"
+              action="level_action_view"/>
+
+            <menuitem id="cycle_menu"
+              name="Cycle"
+              parent="module_root_menu123"
+              action="cycle_action_view"/>
+            <menuitem id="class_menu"
+              name="Class"
+              parent="module_root_menu123"
+              action="class_action_view"/>
+
+         <menuitem id="ins_root_menu"
+              parent="formation.module_root_aze"
+              name="Inscription"
+              sequence="4"/>
+            <menuitem id="reg_menu"
+              name="Inscription"
+              parent="ins_root_menu"
+              action="reg_action_view"/>
+            <menuitem id="session_menu"
+              name="Session"
+              parent="ins_root_menu"
+              action="session_action_view"/>
+            <menuitem id="year_menu"
+              name="School Year"
+              parent="ins_root_menu"
+              action="year_action_view"/>
+         <menuitem id="Livre_menu001" name="Library"
+                   parent="formation.module_root_aze" sequence="5"/>
+             <menuitem id="infos_menu" name="Infos book" parent="Livre_menu001"/>
+              <menuitem id="ouvrage_menu"
+                       name="Books"
+                       parent="infos_menu"
+                       action="livre_action"/>
+              <menuitem id="situation_menu"
+                        name="Situation"
+                        parent="infos_menu"
+                        action="situation_action"/>
+
+             <menuitem id="inscri_bib_menu"
+                       name="Inscription"
+                       action="inscription_action"
+                       parent="Livre_menu001"/>
+
+         <menuitem id="Resultat_menu" name="Score and Results"
+                   parent="formation.module_root_aze" />
+         <menuitem id="Emploi_menu" name="Timetable"
+                   parent="formation.module_root_aze"/>
+
+         <menuitem id="service_claim_root_menu"
+              parent="formation.module_root_aze"
+              name="Services And Claims" sequence="8"/>
+             <menuitem id="claim_menu"
+              name="Claims"
+              parent="service_claim_root_menu"
+              action="claim_action_view"/>
+             <menuitem id="service_menu"
+              name="Services"
+              parent="service_claim_root_menu"
+              action="service_action_view"/>
+<!--                 <menuitem-->
+<!--    		        id="menu_chart"-->
+<!--    		        action="act_chart_service"-->
+<!--                    name="Import Charts Of Services"-->
+<!--    		        parent="service_menu"/>-->
+
+
+</odoo>

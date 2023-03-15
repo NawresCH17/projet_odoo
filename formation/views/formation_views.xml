@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <!--MODULE-->
+        <record id="module_tree_view" model="ir.ui.view">
+            <field name="name">module.module.tree</field>
+            <field name="model">module.module</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Modules">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="section_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="module_form_view" model="ir.ui.view">
+            <field name="name">module.module.form</field>
+            <field name="model">module.module</field>
+            <field name="arch" type="xml">
+                <form string="Modules">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="section_id"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="module_kanban_view" model="ir.ui.view">
+            <field name="name">module.module.kanban</field>
+            <field name="model">module.module</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <field name="name"/>
+                        <field name="section_id"/>
+                        <field name="description"/>
+                        <field name="code"/>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div class="o_kanban_details">
+                                    <field name="code"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <field name="section_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="module_action_view_test">
+            <field name="name">Module</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">module.module</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <!--SECTION-->
+        <record id="section_tree_view" model="ir.ui.view">
+            <field name="name">section.section.tree</field>
+            <field name="model">section.section</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Section">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="section_form_view" model="ir.ui.view">
+            <field name="name">section.section.form</field>
+            <field name="model">section.section</field>
+            <field name="arch" type="xml">
+                <form string="Section">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="level_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Modules">
+                                <field name="module_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="code"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="section_action_view_test">
+            <field name="name">Section</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">section.section</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--LEVEL-->
+        <record id="level_tree_view" model="ir.ui.view">
+            <field name="name">level.level.tree</field>
+            <field name="model">level.level</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Niveau">
+                    <field name="name"/>
+                    <field name="cycle_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="level_form_view" model="ir.ui.view">
+            <field name="name">level.level.form</field>
+            <field name="model">level.level</field>
+            <field name="arch" type="xml">
+                <form string="Level">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="cycle_id"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Section">
+                                <field name="section_ids"/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="level_action_view">
+            <field name="name">Niveau</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">level.level</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--cycle-->
+        <record id="cycle_tree_view" model="ir.ui.view">
+            <field name="name">cycle.cycle.tree</field>
+            <field name="model">cycle.cycle</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Cycle">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cycle_form_view" model="ir.ui.view">
+            <field name="name">cycle.cycle.form</field>
+            <field name="model">cycle.cycle</field>
+            <field name="arch" type="xml">
+                <form string="Cycle">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+
+                            </group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Niveau">
+                                <field name="level_ids"/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cycle_action_view">
+            <field name="name">Cycle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cycle.cycle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <!--Session-->
+        <record id="session_tree_view" model="ir.ui.view">
+            <field name="name">session.session.tree</field>
+            <field name="model">session.session</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="session">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="session_form_view" model="ir.ui.view">
+            <field name="name">session.session.form</field>
+            <field name="model">session.session</field>
+            <field name="arch" type="xml">
+                <form string="Session">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="session_action_view">
+            <field name="name">Session</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">session.session</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--YEAR-->
+        <record id="year_tree_view" model="ir.ui.view">
+            <field name="name">year.year.tree</field>
+            <field name="model">year.year</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Année universitaire">
+                    <field name="name"/>
+                    <field name="session_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="year_form_view" model="ir.ui.view">
+            <field name="name">year.year.form</field>
+            <field name="model">year.year</field>
+            <field name="arch" type="xml">
+                <form string="Year">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="session_ids"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="year_action_view">
+            <field name="name">Année universitaire</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">year.year</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Service-->
+        <record id="service_tree_view" model="ir.ui.view">
+            <field name="name">service.service.tree</field>
+            <field name="model">service.service</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Services">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date_ask"/>
+                    <field name="category"/>
+                    <field name="student_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="service_action_view">
+            <field name="name">Services</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.service</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Class-->
+        <record id="class_tree_view" model="ir.ui.view">
+            <field name="name">class.class.tree</field>
+            <field name="model">class.class</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Class">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="prof_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="class_form_view" model="ir.ui.view">
+            <field name="name">class.class.form</field>
+            <field name="model">class.class</field>
+            <field name="arch" type="xml">
+                <form string="Modules">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(formation.eleve_menu_action)d"
+                                    type="action"
+                                    class="oe_inline oe_stat_button"
+                                    icon="fa-book"
+                                    context="{'search_default_reg_id': active_id}"
+                                    help="show the information for this">
+                                <field name="nbr_std" widget="statinfo" string="Students"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="prof_ids"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="class_action_view">
+            <field name="name">Class</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">class.class</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+
+</odoo>
+

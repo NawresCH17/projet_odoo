@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <!-- Sequences For registration -->
+        <record id="seq_registr" model="ir.sequence">
+            <field name="name">registration.registration</field>
+            <field name="code">registration.registration</field>
+            <field name="prefix">REG-</field>
+            <field name="padding">4</field>
+        </record>
+<!---->
+<!--		&lt;!&ndash; menu For website page &ndash;&gt;-->
+        <record id="menu_claim" model="website.menu">
+            <field name="name">Reclamation</field>
+            <field name="url">/formation/claim</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">40</field>
+        </record>
+</odoo>

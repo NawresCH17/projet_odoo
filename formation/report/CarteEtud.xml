@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_template_carte">
+            <t t-call="web.html_container">
+
+            <div class="page">
+                <t t-foreach="docs" t-as="student">
+                    <div class="col-md-6">
+
+                        <table style="width:240pt; height:155pt; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+
+                            <td style="width:90pt;" valign="center">
+                                <h3>Student Card</h3>
+                                <table style="width:83pt; height:150pt">
+                                    <tr style="height:70%;">
+                                        <td align="center" valign="center">
+                                            <img t-att-src="image_data_uri(student.photo)" style="max-height:85pt;max-width:90%" alt="Student Image"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td valign="center">
+                                <table style="width:155pt; height:85pt">
+                                    <tr><th>
+                                      <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                          Identifiant:<t t-esc="student.name"/>
+                                      </div></th></tr>
+                                    <tr><th>
+                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                             First Name:<t t-esc="student.first_name"/>
+                                         </div>
+                                    </th></tr>
+                                    <tr><th>
+                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                            Last Name:<t t-esc="student.last_name"/>
+                                         </div>
+                                    </th></tr>
+                                    <tr><th>
+                                        <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                            Num CIN:<t t-esc="student.num_cin"/>
+                                        </div>
+                                    </th></tr>
+
+                                </table>
+                            </td>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+  </template>
+</odoo>
