@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_claims_claims,claims_claims_manager,model_claims_claims,base.group_user,1,1,1,1
+access_services_services,services_services_manager,model_services_services,base.group_user,1,1,1,1
+
+
+

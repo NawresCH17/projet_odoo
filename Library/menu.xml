@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <odoo>
+      <menuitem
+            id="library_root_menu"
+            name="Library"/>
+<!--         <menuitem id="Livre_menu001" name="Library"-->
+<!--                   parent="library_root_menu"/>-->
+             <menuitem id="infos_menu" name="Infos book" parent="library_root_menu"/>
+              <menuitem id="ouvrage_menu"
+                       name="Books"
+                       parent="infos_menu"
+                       action="livre_action"/>
+              <menuitem id="situation_menu"
+                        name="Situation"
+                        parent="infos_menu"
+                        action="situation_action"/>
+
+             <menuitem id="inscri_bib_menu"
+                       name="Inscription"
+                       action="inscription_action"
+                       parent="library_root_menu"/>
+</odoo>

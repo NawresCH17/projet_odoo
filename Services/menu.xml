@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="service_claim_menu"
+              name="Services/Claims"/>
+             <menuitem id="claim_menu01"
+              name="Claims"
+              parent="service_claim_menu"
+              action="claim_action_view"/>
+             <menuitem id="service_menu01"
+              name="Services"
+              parent="service_claim_menu"
+              action="service_action_view"/>
+<!--                 <menuitem-->
+<!--    		        id="menu_chart"-->
+<!--    		        action="act_chart_service"-->
+<!--                    name="Import Charts Of Services"-->
+<!--    		        parent="service_menu"/>-->
+
+</odoo>
