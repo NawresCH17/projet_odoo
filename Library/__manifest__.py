@@ -1,7 +1,7 @@
 {
     'name': "Odoo universitaire ",
     'version': '1.0',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'formation'],
     'summary': 'application,university,odoo16',
     'author': "stage",
     'category': 'Category',
@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/bib_view.xml',
+        'reports/report_cart.xml',
         'menu.xml'
     ],
     # data files containing optionally loaded demonstration data

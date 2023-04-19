@@ -10,10 +10,5 @@
               name="Services"
               parent="service_claim_menu"
               action="service_action_view"/>
-<!--                 <menuitem-->
-<!--    		        id="menu_chart"-->
-<!--    		        action="act_chart_service"-->
-<!--                    name="Import Charts Of Services"-->
-<!--    		        parent="service_menu"/>-->
 
 </odoo>

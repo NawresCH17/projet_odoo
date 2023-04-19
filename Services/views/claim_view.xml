@@ -9,11 +9,62 @@
             <field name="arch" type="xml">
                 <tree string="Services">
                     <field name="name"/>
-                    <field name="code"/>
                     <field name="date_ask"/>
                     <field name="category"/>
-<!--                    <field name="student_id"/>-->
+                    <field name="student_id"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="state"
+                           decoration-warning="state == 'new'"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"
+                           widget="badge"/>
                 </tree>
+            </field>
+        </record>
+        <record id="service_form_view" model="ir.ui.view">
+            <field name="name">services.services.form</field>
+            <field name="model">services.services</field>
+            <field name="arch" type="xml">
+                <form string="Services">
+                     <header>
+
+                        <button name="action_done" string="Valid" type="object" class="oe_highlight" icon="fa-check" confirm="Are you sure that you need to confirm ?"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel?" attrs="{'invisible': [('state','=','cancel')]}"/>
+                        <button name="print_service" string="Print" type="object" class="btn-info" icon="fa-print" style="margin-right:100px"/>
+                        <button name="action_send_mail" string="Send Mail" type="object" class="btn-info" icon="fa-print" />
+                         <field name="state" widget="statusbar" statusbar_visible="in progress,done,cancel"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_ask"/>
+                                <field name="code"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                            <group>
+                                <field name="priority" widget="priority" />
+                                <field name="category"/>
+                                <field name="date_response"/>
+                                <field name="student_id"/>
+                                <field name="personnel_id"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                                <field name="file" widget="pdf_viewer"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
             </field>
         </record>
 
@@ -32,11 +83,11 @@
             <field name="arch" type="xml">
                 <tree string="Reclamation">
                     <field name="name"/>
-<!--                    <field name="reg_id"/>-->
-<!--                    <field name="student_id"/>-->
+                    <field name="student_id"/>
                     <field name="description"/>
-                    <field name="state"/>
-
+                    <field name="type"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="state" widget="badge"/>
                 </tree>
             </field>
         </record>
@@ -46,31 +97,41 @@
             <field name="arch" type="xml">
                 <form string="Claim">
                      <header>
-                        <button name="action_new" states="new" string="New" type="object" class="oe_highlight" icon="fa-plus"/>
-                        <button name="action_done" states="new" string="Valid" type="object" class="oe_highlight" icon="fa-check"/>
-                        <button name="action_cancel" states="cancel" string="Cancel" type="object" class="oe_highlight" icon="fa-minus"/>
-                        <field name="state" widget="statusbar" clickable="true"/>
+                        <button name="action_done" string="Valid" type="object" class="oe_highlight" icon="fa-check" confirm="Are you sure that you need to confirm ?" attrs="{'invisible': [('state','=','cancel')]}" />
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel?"/>
+                        <button name="print_claim" string="Print claim" type="object" class="btn-info" icon="fa-print" style="margin-right:100px"/>
+                         <field name="state" widget="statusbar" statusbar_visible="new,done,cancel"/>
                     </header>
+
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
                                 <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="type"/>
 
                             </group>
                             <group>
                                 <field name="code"/>
-                                <field name="end_date"/>
-<!--                                <field name="student_id"/>-->
+                                <field name="priority" widget="priority" />
+                                <field name="student_id"/>
+                                <field name="user_id"/>
+
                             </group>
                         </group>
                         <notebook>
                             <page string="Description">
-                                <field name="description"/>
-                                <field name="state"/>
+                                <field name="description" />
+                                <field name="file" widget="pdf_viewer"/>
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter" groups="base.group_user,base.group_personnel">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -81,7 +142,7 @@
             <field name="arch" type="xml">
                 <calendar string="Claims" date_start="start_date" color="state">
                     <field name="name"/>
-                    <field name="code"/>
+                    <field name="student_id"/>
                 </calendar>
             </field>
         </record>
@@ -98,10 +159,6 @@
                     <filter string="Valid" name="done" domain="[('state','=','done')]"/>
                     <filter string="Canceled" name="cancel" domain="[('state','=','cancel')]"/>
 
-<!--                    <group expand="0" string="Group By">-->
-<!--                        <filter string="responable" name="Student" context="{'group_by': 'student_id'}"/>-->
-<!--                        <filter string="inscription" name="inscri" context="{'group_by': 'reg_id'}"/>-->
-<!--                    </group>-->
                 </search>
             </field>
         </record>
@@ -135,5 +192,15 @@
              <field name="view_mode">tree,calendar,form,graph,pivot</field>
 
         </record>
+        <record id="claim_view_action" model="ir.actions.act_window">
+			<field name="name">Claim</field>
+			<field name="res_model">claims.claims</field>
+			<field name="view_mode">tree,calendar,form,graph,pivot</field>
+		    <field name="context">{
+                'search_default_reg_id': [active_id],
+		        'default_reg_id': active_id, }
+            </field>
+			<field name="domain">[]</field>
+		</record>
     </data>
 </odoo>

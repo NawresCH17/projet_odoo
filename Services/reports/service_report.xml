@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="report_service_view"
+            model="services.services"
+            string="Service Report"
+            report_type="qweb-pdf"
+            name="Services.report_template_service_view"
+            file="Services.report_template_service_view"
+            menu="True"
+        />
+
+        <template id="report_template_service_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div style="float:left;padding:5px">
+                          <img src='/web/binary/company_logo'/>
+			            </div>
+                        <div class="page" >
+
+                            <h2 style="text-align:center;font-weight: bold;">Service Report</h2><br/><br/>
+
+                            Service Type: <p t-field="o.category" />
+                            <table style="border: 1px solid black;width:100%;padding:5px">
+									 <tr>
+                                        <td style="color:red;font-weight: bold;">Name: </td>
+                                        <td><span style="font-size: 23;" t-field="o.name"/></td></tr>
+									 <tr>
+                                        <td style="color:red;font-weight: bold;">Student </td>
+                                        <td><span style="font-size: 23;" t-field="o.student_id" /></td></tr>
+                                     <tr>
+                                        <td style="color:red;font-weight: bold;">Student </td>
+                                        <td><span style="font-size: 23;" t-field="o.student_id.name" /></td></tr>
+									 <tr>
+                                        <td style="color:red;font-weight: bold;">Date ask: </td>
+                                        <td><span style="font-size: 23;" t-field="o.date_ask" /></td></tr>
+
+									 <tr>
+                                        <td style="color:red;font-weight: bold;">Priority: </td>
+                                        <td><span style="font-size: 23;" t-field="o.priority" /></td></tr>
+                                     <tr>
+                                        <td style="color:red;font-weight: bold;">Description: </td>
+                                        <td><span style="font-size: 23;" t-field="o.description" /></td></tr>
+                            </table>
+                            <br/><br/>
+                            <div style="margin-left:600px">
+                                Tunis on <p t-field="o.date_response"></p>
+                                <br/>
+                                <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', 'text', 120, 120)"/>
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+</odoo>

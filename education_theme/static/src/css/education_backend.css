@@ -2,7 +2,7 @@
     color: #ffffff !important;
 }
 .o_sub_menu_content{
-    background: #e55d5d;
+    background: #7091a4;
 }
 .oe_kanban_action_button{
     background: #5fb18d;
@@ -41,7 +41,7 @@
     color: #ffffff !IMPORTANT;
 }
 .dropdown-menu {
-    background-color: #e55d5d !IMPORTANT;
+    background-color: #7091a4!IMPORTANT;
 }
 .dropdown-menu > li > a:focus{
     background-color: #f3aa33!IMPORTANT;
@@ -131,8 +131,8 @@
 }
 .oe_highlight:hover {
     color: #ffffff;
-    background-color: #e55d5d;
-    border-color: #e55d5d;
+    background-color: #7091a4;
+    border-color:#7091a4;
 }
 .o_form_view ul.oe_form_status_clickable li.oe_active:hover > .arrow span {
     background: -webkit-gradient(linear, left top, right bottom, from(#5fb18d), to(#5fb18d));
@@ -141,10 +141,10 @@
     background-image: linear-gradient(to bottom, #5fb18d, #5fb18d);
 }
 .o_form_view.o_form_readonly .o_form_uri:first-line {
-    color: #e55d5d;
+    color:#7091a4;
 }
 .navbar-inverse {
-    background-color: #e55d5d !important;
+    background-color: #7091a4 !important;
     border-color: #d25858 !important;
 }
 .navbar-inverse .navbar-nav > li > a {
@@ -188,7 +188,7 @@
 {
 	border-radius: 10px !important;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
-	background-color: #e55d5d !important;
+	background-color: #7091a4!important;
 }
 .o_loading {
     background-color: #5fb18d !important;
@@ -218,7 +218,7 @@
     border: none !important;
 }
 .btn-link {
-    color: #e55d5d !important;
+    color: #7091a4!important;
     font-weight: normal;
     border-radius: 0;
 }
@@ -229,7 +229,7 @@
     background-color: #ffffff !important;
 }
 .nav-tabs > li.active > a {
-    color: #e55d5d !important;
+    color: #7091a4 !important;
 }
 .nav-tabs > li.active > a:focus{
     color: #ffffff !important;
@@ -309,7 +309,7 @@
     box-shadow: 2px 14px 32px 5px rgba(0, 0, 0, 0.02), 0 3px 13px 0px rgba(0, 0, 0, 0.35);
 }
 .o_chat_window .o_chat_header {
-    background-color: #e55d5d !important;
+    background-color: #7091a4 !important;
 }
 .o_chat_window .o_chat_header .o_chat_window_close {
     color: white !important;
@@ -320,7 +320,7 @@
     background-color: #f3aa33!important;
 }
 .datepicker-days thead {
-    background-color: #e55d5d !important;
+    background-color: #7091a4!important;
 }
 .bootstrap-datetimepicker-widget td.day {
     color: #fff !important;
@@ -338,11 +338,11 @@
     background: #c33030 !important;
 }
 .datepicker .table-condensed > thead > tr:last-child {
-    color: #e55d5d !important;
+    color: #7091a4!important;
     background-color: #ffffff !important;
 }
 .o_form_view ul.oe_form_status_clickable li > .label {
-    color: #e55d5d !important;
+    color: #7091a4!important;
 }
 .o_form_view ul.oe_form_status li.oe_active > .label, .o_form_view ul.oe_form_status_clickable li.oe_active > .label {
     color: white !important;
@@ -395,8 +395,8 @@ ul#ui-id-7 a:hover {
 }
 .o_main_navbar .dropdown-menu.show,
 .o_main_navbar {
-    border: 1px solid #e25151 !important;
-    background-color: #e25151 !important;
+    border: 1px solid #7091a4!important;
+    background-color: #7091a4 !important;
     color: #ffffff !important;
 }
 .fa-external-link {
@@ -447,8 +447,8 @@ button.btn.btn-primary.btn-sm.o_form_button_save {
     background-color:#5fb18d5c !important;
 }
 button.btn.btn-primary.btn-sm.o-kanban-button-new {
-    background-color: #e55d5d !important;
-    border-color: #e55d5d !important;
+    background-color: #7091a4 !important;
+    border-color: #7091a4!important;
 }
 .o_required_modifier .o_input {
     background-color: #5fb18d5c !important;
@@ -474,10 +474,10 @@ button.btn.btn-primary.btn-sm.o-kanban-button-new {
     color: #3d3d3d;
 }
 .o_dashboards .o_website_dashboard .o_dashboard_common .o_inner_box.o_primary, .o_dashboards .o_website_dashboard .o_dashboard_common .o_inner_box.o_apps {
-    background-color: #e55d5d !important;
+    background-color: #7091a4 !important;
 }
 .label-primary {
-    background-color: #e55d5d;
+    background-color: #7091a4;
 }
 .o_mail_navbar_item .o_mail_navbar_dropdown .o_no_activity {
     color: #ffffff;
@@ -503,8 +503,8 @@ button.btn.btn-primary.btn-sm.o-kanban-button-new {
 }
 .btn-primary:focus, .btn-primary.focus {
     color: #ffffff;
-    background-color: #e55d5d !important;
-    border-color: #e55d5d !important;
+    background-color: #7091a4!important;
+    border-color: #7091a4 !important;
 }
 .o_tooltip.active.right::before {
     left: -10px;
@@ -522,7 +522,7 @@ button.btn.btn-primary.btn-sm.o-kanban-button-new {
 div.o_boolean_toggle .slider{
 }
 div.o_boolean_toggle .slider {
-    background-color: #e55d5d;
+    background-color: #7091a4;
 }
 div.o_boolean_toggle > input:checked + .slider {
     background-color: #5fb18d;
@@ -544,7 +544,7 @@ div.o_boolean_toggle > input:checked + .slider {
 }
 .o_form_view .oe_button_box .btn.oe_stat_button > .o_button_icon,
 .o_search_panel .o_search_panel_category .o_search_panel_section_icon {
-    color: #E25151;
+    color: #7091a4;
 }
 .o_search_panel .list-group-item header.active {
     background-color: rgba(95, 177, 141, 0.37);
@@ -631,7 +631,7 @@ div.o_boolean_toggle.custom-control.custom-checkbox > input.custom-control-input
     background-color: #5FB18D !important;
 }
 div.o_boolean_toggle.custom-control.custom-checkbox > label.custom-control-label::before {
-    background-color: #E25151 !important;
+    background-color: #7091a4 !important;
 }
 .o_DiscussSidebarItem_activeIndicator.o-item-active {
     background-color: #5fb18d;

@@ -73,7 +73,7 @@ class ImportChartAccount(models.TransientModel):
                             'student_id': field[3],
                             'category': field[4]
                         })
-                        res = self.create_chart(values)
+                        return self.create_chart(values)
 
         # ---------------------------------------
         elif self.import_option == 'xlsx':
