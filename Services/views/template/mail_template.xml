@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="mail_template_service" model="mail.template">
+            <field name="name">Servie:Send By Email</field>
+            <field name="model_id" ref="Services.model_services_services"/>
+        	<field name="email_from">"{{ object.student_id.email }}" </field>
+        	<field name="email_to">"{{ object.personnel_id.email }}"</field>
+        	<field name="subject">"{{ object.description }}"</field>
+        	<field name="body_html" type="html">
+            	<div style="margin: 0px; padding: 0px;">
+                	<div style="margin: 0px; padding: 0px;">
+                    	<p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        	Dear <t t-out="object.personnel_id"/>,
+                        	<br/>
+                        	<br/>
+                        	Good job, this is our first e-mail template!
+                        	<br/>
+			               regards,
+						</p>
+					</div></div>
+			</field>
+        </record>
+    </data>
+</odoo>
