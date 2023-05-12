@@ -13,41 +13,43 @@
         <template id="report_template_service_view">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.external_layout">
-                        <div style="float:left;padding:5px">
-                          <img src='/web/binary/company_logo'/>
-			            </div>
+                    <t t-call="web.report_layout">
+
                         <div class="page" >
 
-                            <h2 style="text-align:center;font-weight: bold;">Service Report</h2><br/><br/>
+                            <h2 style="text-align:center;font-weight: bold;">Service Report</h2>
 
-                            Service Type: <p t-field="o.category" />
-                            <table style="border: 1px solid black;width:100%;padding:5px">
-									 <tr>
-                                        <td style="color:red;font-weight: bold;">Name: </td>
-                                        <td><span style="font-size: 23;" t-field="o.name"/></td></tr>
-									 <tr>
-                                        <td style="color:red;font-weight: bold;">Student </td>
-                                        <td><span style="font-size: 23;" t-field="o.student_id" /></td></tr>
+                            <table style="width:100%;padding:35px;margin:50px;">
                                      <tr>
-                                        <td style="color:red;font-weight: bold;">Student </td>
-                                        <td><span style="font-size: 23;" t-field="o.student_id.name" /></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Service Type: </td>
+                                        <td><span style="font-size: 20;" t-field="o.category"/></td>
+                                     </tr>
 									 <tr>
-                                        <td style="color:red;font-weight: bold;">Date ask: </td>
-                                        <td><span style="font-size: 23;" t-field="o.date_ask" /></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.name"/></td>
+                                     </tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Student </td>
+                                        <td><span style="font-size: 20;" t-field="o.student_id" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Student </td>
+                                        <td><span style="font-size: 20;" t-field="o.student_id.name" /></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Date ask: </td>
+                                        <td><span style="font-size: 20;" t-field="o.date_ask" /></td></tr>
 
 									 <tr>
-                                        <td style="color:red;font-weight: bold;">Priority: </td>
-                                        <td><span style="font-size: 23;" t-field="o.priority" /></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Priority: </td>
+                                        <td><span style="font-size: 20;" t-field="o.priority" /></td></tr>
                                      <tr>
-                                        <td style="color:red;font-weight: bold;">Description: </td>
-                                        <td><span style="font-size: 23;" t-field="o.description" /></td></tr>
-                            </table>
-                            <br/><br/>
-                            <div style="margin-left:600px">
-                                Tunis on <p t-field="o.date_response"></p>
+                                        <td style="color:DarkBlue;font-weight: bold;">Description: </td>
+                                        <td><span style="font-size: 20;" t-field="o.description" /></td></tr>
+                              </table>
+                            <br/><br/><br/><br/>
+                            <div style="margin-left:760px">
+                                <strong>Tunis on</strong> <p style="margin-right:35px" t-field="o.date_response"></p>
                                 <br/>
-                                <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', 'text', 120, 120)"/>
+                                <strong>Responsible</strong> <p style="margin-right:35px" t-field="o.personnel_id"/>
                             </div>
 
 

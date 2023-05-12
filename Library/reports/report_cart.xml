@@ -23,7 +23,7 @@
                                 <table style="width:83pt; height:150pt">
                                     <tr style="height:70%;">
                                         <td align="center" valign="center">
-                                            <img t-att-src="image_data_uri(p.photo)" style="max-height:85pt;max-width:90%" alt="Image"/>
+                                            <img t-att-src="image_data_uri(p.photo)" style="max-height:80pt;max-width:80%" alt="Image"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -31,17 +31,17 @@
                             <td valign="center">
                                 <table style="width:170pt; height:85pt">
                                     <tr><th>
-                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                         <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;" align="center">
                                              Name:<t t-esc="p.nom_utilisateur.name"/>
                                          </div>
                                     </th></tr>
                                     <tr><th>
-                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                         <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;" align="center">
                                             Date Inscription:<t t-esc="p.date_debut_inscription"/>
                                          </div>
                                     </th></tr>
                                     <tr><th>
-                                        <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                        <div style="font-size:10pt; margin-bottom:0pt;margin-top:0pt;" align="center">
                                              Date Fin inscription:<t t-esc="p.date_fin_inscription"/>
                                         </div>
                                     </th></tr>

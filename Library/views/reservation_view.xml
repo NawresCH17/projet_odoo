@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="reservation_view_tree" model="ir.ui.view">
+            <field name="name">reservation_view_tree</field>
+            <field name="model">reserv.reserv</field>
+            <field name="arch" type="xml">
+                <tree string="reservation_tree">
+
+  <field name="date_reservation" widget="daterange" string="From" class="oe_inline" options="{'related_end_date': 'max_date'}"/>
+ <field name="max_date" widget="daterange" string="To"  class="oe_inline" options="{'related_start_date': 'date_reservation'}"/>
+                    <field name="res_id"/>
+                    <field name="user"/>
+                    <field name="state"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"
+                           widget="badge"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="reservation_view_form" model="ir.ui.view">
+            <field name="name">reservation_view_form</field>
+            <field name="model">reserv.reserv</field>
+            <field name="arch" type="xml">
+                <form string="reservation_form">
+                    <header>
+                        <button name="action_done" string="Valid" type="object" class="btn-success" icon="fa-check" confirm="Are you sure that you need to confirm ?" attrs="{'invisible': [('state','=','cancel')]}" />
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel ?"/>
+                        <field name="state" statusbar_visible="done,cancel" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                       <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_reservation" widget="daterange" string="from" class="oe_inline" options="{'related_end_date': 'max_date'}"/>
+ <field name="max_date" widget="daterange" string="To"  class="oe_inline" options="{'related_start_date': 'date_reservation'}"/>
+
+
+                        </group>
+                           <group>
+                               <field name="res_id" />
+                               <field name="user" />
+                           </group>
+                       </group>
+                       <notebook>
+                            <page string="Description">
+                                <field name="description" widget="char_emojis" />
+                            </page>
+                        </notebook>
+                        <br/><br/>
+                        <div class="oe_chatter">
+                         <field name="message_follower_ids" widget="mail_followers"/>
+                         <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="calendar_reser" model="ir.ui.view">
+           <field name="model">reserv.reserv</field>
+           <field name="arch" type="xml">
+            <calendar date_start="date_reservation" date_stop="max_date" color="user">
+            </calendar>
+           </field>
+        </record>
+        <record id="reservation_view_action" model="ir.actions.act_window">
+            <field name="name">Reservation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reserv.reserv</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+    </data>
+</odoo>

@@ -13,37 +13,40 @@
         <template id="report_template_claim_view">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.external_layout">
-                        <div style="float:left;padding:5px">
-                          <img src='/web/binary/company_logo'/>
-			            </div>
-                        <div class="page" >
+                    <t t-call="web.report_layout">
+
+                        <div class="page">
                             <h2 style="text-align:center;font-weight: bold;">Claim Report</h2>
 
-                            <table style="border: 1px solid black;width:100%;padding:20px">
+                            <table style="width:100%;padding:40px;margin:50px;">
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Type of Claim: </td>
+                                        <td><span style="font-size: 20;" t-field="o.type" /></td></tr>
 									 <tr>
-                                        <td style="color:red;font-weight: bold;">Name: </td>
-                                        <td><span style="font-size: 23;" t-field="o.name"/></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.name"/></td></tr>
 									 <tr>
-                                        <td style="color:red;font-weight: bold;">Student </td>
-                                        <td><span style="font-size: 23;" t-field="o.student_id" /></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Student </td>
+                                        <td><span style="font-size: 20;" t-field="o.student_id" /></td></tr>
 									 <tr>
-                                        <td style="color:red;font-weight: bold;">Date ask: </td>
-                                        <td><span style="font-size: 23;" t-field="o.start_date" /></td></tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Date ask: </td>
+                                        <td><span style="font-size: 20;" t-field="o.start_date" /></td></tr>
 
                                      <tr>
-                                        <td style="color:red;font-weight: bold;">Description: </td>
-                                        <td><span style="font-size: 23;" t-field="o.description" /></td></tr>
-
+                                        <td style="color:DarkBlue;font-weight: bold;">State: </td>
+                                        <td><span style="font-size: 20;" t-field="o.state" /></td></tr>
                                      <tr>
-                                        <td style="color:red;font-weight: bold;">State: </td>
-                                        <td><span style="font-size: 23;" t-field="o.state" /></td></tr>
-                                     <br/><br/>
+                                        <td style="color:DarkBlue;font-weight: bold;">Description: </td>
+                                        <td><span style="font-size: 20;" t-field="o.description" /></td></tr>
+
                              </table>
-                             <br/><br/>
-                            <div style="margin-left:600px">
-                                <p>Barcode:</p> <br/>
-                                <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', 'text', 120, 120)"/>
+                             <br/><br/><br/>
+                            <div style="margin-left:760px">
+                               <strong>Tunis on</strong> <p style="margin-right:35px" t-field="o.end_date"></p>
+                                 <br/>
+
+                                <strong>Responsible</strong><p style="margin-right:35px" t-field="o.user_id" />
+
                             </div>
                         </div>
                     </t>

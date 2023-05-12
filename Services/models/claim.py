@@ -11,7 +11,7 @@ class Claim(models.Model):
     start_date = fields.Date('Date ask', help="Date")
     end_date = fields.Date('Date response', help="Date",default=fields.Date.today())
     code = fields.Char(string='Code', required=False, readonly=False)
-    description = fields.Text(string='Description', required=False, readonly=False)
+    description = fields.Html(string='Description', required=False, readonly=False)
     reg_id = fields.Many2one('registration.registration', string='Inscription')
     user_id = fields.Many2one('res.users', string="Responsible")
     student_id = fields.Many2one('eleve.eleve', string='Student')

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="emprunt_view_tree" model="ir.ui.view">
+            <field name="name">emprunt_view_tree</field>
+            <field name="model">emprunt.emprunt</field>
+            <field name="arch" type="xml">
+                <tree string="emprunt_tree">
+
+                    <field name="docs_id"/>
+                    <field name="date_emprunt"/>
+                    <field name="date_retour"/>
+
+                    <field name="user"/>
+                    <field name="personnel_id"/>
+                    <field name="state"
+
+                           decoration-success="state == 'done'"
+                           decoration-info="state == 'return'"
+                           widget="badge"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="emprunt_view_form" model="ir.ui.view">
+            <field name="name">emprunt_view_form</field>
+            <field name="model">emprunt.emprunt</field>
+            <field name="arch" type="xml">
+                <form string="IssueBook_form">
+                    <header>
+                        <button name="action_done" string="Issue" type="object" class="btn-success" icon="fa-check" confirm="Are you sure that you need to confirm the borrow of the book?" attrs="{'invisible': [('state','=','return')]}" />
+                        <button name="action_cancel" string="Return" type="object" class="btn-info" icon="fa-minus" confirm="Are you sure that you want to return the book ?"/>
+                        <field name="state" statusbar_visible="done,return" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                      <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="docs_id"/>
+                            <field name="user"/>
+                            <field name="personnel_id"/>
+
+                        </group>
+                        <group>
+                               <field name="date_emprunt"/>
+                               <field name="date_retour"/>
+                               <field name="nombre_livres"/>
+                               <field name="penalty"/>
+                        </group>
+                      </group>
+                      <notebook>
+                            <page string="Description">
+                                <field name="description" widget="char_emojis" />
+                            </page>
+                      </notebook>
+                        <br/><br/>
+                        <div class="oe_chatter">
+                         <field name="message_follower_ids" widget="mail_followers"/>
+                         <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="calendar_emprunt" model="ir.ui.view">
+           <field name="model">emprunt.emprunt</field>
+           <field name="arch" type="xml">
+            <calendar date_start="date_emprunt" date_stop="date_retour" color="user">
+            </calendar>
+           </field>
+        </record>
+        <record id="emprunt_view_action" model="ir.actions.act_window">
+            <field name="name">Issue Book</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">emprunt.emprunt</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+    </data>
+</odoo>

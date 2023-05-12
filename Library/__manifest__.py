@@ -13,6 +13,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/bib_view.xml',
+        'views/reservation_view.xml',
+        'views/emprunt_view.xml',
         'reports/report_cart.xml',
         'menu.xml'
     ],

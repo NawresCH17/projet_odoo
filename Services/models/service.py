@@ -14,10 +14,10 @@ class Service(models.Model):
     reg_id = fields.Many2one('registration.registration', string='Registration')
     student_id = fields.Many2one('eleve.eleve', string='Student')
     category = fields.Selection([('certificate_attendance', 'certificate of attendance'),
-                                 ('certificate_registration', 'certificate_registration'),
+                                 ('certificate_registration', 'certificate of registration'),
                                  ('internship_doc', 'internship documents')], string='Category')
     state = fields.Selection([('in progress', 'In progress'), ('done', 'Valid'), ('cancel', 'Canceled')], string='Status')
-    description = fields.Text(string='Description', required=False, readonly=False)
+    description = fields.Html(string='Description', required=False, readonly=False)
     priority = fields.Selection(
         [('0', 'Low'),
          ('1', 'Normal'),

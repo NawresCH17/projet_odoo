@@ -19,4 +19,13 @@
                        name="Inscription"
                        action="inscription_action"
                        parent="library_root_menu"/>
+             <menuitem id="module_menu002"
+              name="Reservation"
+              parent="library_root_menu"
+              action="reservation_view_action"/>
+             <menuitem id="emprunt_menu01"
+              name="borrow Book"
+              parent="library_root_menu"
+              action="emprunt_view_action"/>
+
 </odoo>
