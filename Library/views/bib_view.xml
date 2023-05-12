@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <data>
+    <record id="library_book_view_form" model="ir.ui.view">
+       <field name="name">Library Book Form</field>
+       <field name="model">bibl.bibl</field>
+       <field name="arch" type="xml">
+         <form>
+            <sheet>
+             <group>
+              <field name="name"/>
+              <field name="code"/>
+              <field name="auteur" widget="many2many_tags"/>
+              <field name="book_id"/>
+              <field name="published" widget="boolean_toggle"/>
+              <field name="publisher"/>
+              <field name="published_date" widget="remaining_days"/>
+              <field name="image" widget="image"/>
+            </group>
+            <group>
+              <field name="book_release_date"/>
+              <field name="book_Category"/>
+              <field name="Etat" widget="radio"/>
+                <field name="priority" widget="priority" />
+
+            </group>
+                <group>
+                    <field name="description"/>
+                </group>
+
+           </sheet>
+         </form>
+       </field>
+    </record>
+    <record id="library_book_view_tree" model="ir.ui.view">
+        <field name="name">Library Book List</field>
+        <field name="model">bibl.bibl</field>
+        <field name="arch" type="xml">
+         <tree>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="auteur" widget="many2many_tags"/>
+            <field name="book_release_date"/>
+            <field name="Etat"
+                           decoration-warning="Etat == 'pris'"
+                           decoration-success="Etat == 'disponible'"
+                           widget="badge"/>
+             <field name="priority" widget="priority" />
+             <field name="publisher"/>
+            <field name="published_date" widget="remaining_days"/>
+         </tree>
+        </field>
+    </record>
+    <record id="view_kanban" model="ir.ui.view">
+       <field name="name">Books Kanban view</field>
+       <field name="model">bibl.bibl</field>
+       <field name="arch" type="xml">
+        <kanban>
+          <field name="image" />
+          <field name="name" />
+          <field name="book_release_date"/>
+           <templates>
+            <t t-name="kanban-box">
+             <div t-attf-class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                    <field name="image" widget="image" />
+                </div>
+                <div class="oe_kanban_details">
+                  <strong class="o_kanban_record_title">
+                    Book Name:<field name="name"/>
+                    Author:<field name="auteur"/>
+                      <field name="Etat" widget="badge"/>
+                  </strong>
+                  <div t-if="record.book_release_date.value">
+                    Release Date:<t t-esc="record.book_release_date.value"/>
+                  </div>
+                </div>
+            </div>
+           </t>
+        </templates>
+
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="livre_action">
+      <field name="name">Books</field>
+      <field name="res_model">bibl.bibl</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="inscription_action">
+       <field name="name">Inscription</field>
+       <field name="res_model">bibl.inscription</field>
+       <field name="view_mode">tree,form,calendar,graph,kanban</field>
+
+    </record>
+    <record id="inscription_view_tree" model="ir.ui.view">
+        <field name="name">Library Inscription</field>
+        <field name="model">bibl.inscription</field>
+        <field name="arch" type="xml">
+         <tree>
+
+            <field name="nom_utilisateur"/>
+            <field name="date_debut_inscription"/>
+            <field name="date_fin_inscription"/>
+            <field name="state"
+                           decoration-warning="state == 'new'"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"
+                           widget="badge"/>
+         </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="libraryInscription_form_view">
+            <field name="name">Library Inscription</field>
+            <field name="model">bibl.inscription</field>
+            <field name="arch" type="xml">
+                <form string="Library inscription">
+
+                    <header>
+                        <button name="action_done" string="Valid" type="object" class="btn-success" icon="fa-check" confirm="Are you sure that you need to confirm ?" attrs="{'invisible': [('state','=','cancel')]}" />
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel ?"/>
+                        <button name="print_carte" string="Print Card" type="object" class="btn-info" icon="fa-print" attrs="{'invisible': [('state','=','cancel')]}"/>
+                        <field name="state" statusbar_visible="new,done,cancel" widget="statusbar"/>
+                    </header>
+                   <sheet>
+                    <field name="photo" widget="image" class="oe_avatar oe_right"/>
+                        <div class="col-8">
+                            <group>
+                                <group>
+                                  <field name="name"/>
+                                  <field name="nom_utilisateur"/>
+                                  <field name="date_debut_inscription"/>
+                                  <field name="date_fin_inscription"/>
+                                </group>
+                                <group>
+                                    <field name="library_ok"/>
+                                    <field name="limit"/>
+                                    <field name="nombre_livres_lus"/>
+                                </group>
+                            </group>
+                        </div>
+                       <br/><br/>
+                       <div class="oe_chatter">
+                         <field name="message_follower_ids" widget="mail_followers"/>
+                         <field name="message_ids" widget="mail_thread"/>
+                        </div>
+
+                   </sheet>
+                </form>
+            </field>
+     </record>
+
+    <record id="calendar_inscription" model="ir.ui.view">
+       <field name="model">bibl.inscription</field>
+       <field name="arch" type="xml">
+         <calendar date_start="date_debut_inscription" date_stop="date_fin_inscription" color="nom_utilisateur">
+         </calendar>
+       </field>
+    </record>
+    <record model="ir.ui.view" id="livres_lus_graph_view">
+        <field name="name">bibl.inscription.graph</field>
+        <field name="model">bibl.inscription</field>
+        <field name="arch" type="xml">
+         <graph string="Nombre de livres lus par utilsateur">
+           <field name="nom_utilisateur"/>
+           <field name="nombre_livres_lus" type="measure"/>
+         </graph>
+        </field>
+    </record>
+
+     <record id="library_situation_view_tree" model="ir.ui.view">
+        <field name="name">Library Book Situation</field>
+        <field name="model">bibl.general</field>
+        <field name="arch" type="xml">
+         <tree>
+            <field name="total_number_of_books"/>
+             <field name="number_of_books_out"/>
+             <field name="date_situation"/>
+              <field name="taken_books_percentage"/>
+         </tree>
+        </field>
+    </record>
+    <record id="library_situation_view_form" model="ir.ui.view">
+      <field name="name">Library Book Situation Form</field>
+      <field name="model">bibl.general</field>
+      <field name="arch" type="xml">
+         <form>
+           <sheet>
+            <group>
+             <field name="name"/>
+             <field name="total_number_of_books"/>
+             <field name="number_of_books_out"/>
+             <field name="date_situation"/>
+            </group>
+            <group>
+              <field name="taken_books_percentage"/>
+            </group>
+           </sheet>
+         </form>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="situation_action">
+        <field name="name">Library Book</field>
+        <field name="res_model">bibl.general</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   </data>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <odoo>
+
+	<record id="conduite_view_search" model="ir.ui.view">
+            <field name="model">conduite.conduite</field>
+            <field name="arch" type="xml">
+                <search string="Scheduled Actions">
+                    <field name="eleve_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="eleve_conduite_action" model="ir.actions.act_window">
+			<field name="name">Presence Entry</field>
+			<field name="res_model">conduite.conduite</field>
+			<field name="view_mode">tree,form,graph,pivot</field>
+			<field name="domain">[]</field>
+		</record>
+
+	<record id="eleve_conduite_action2" model="ir.actions.act_window">
+			<field name="name">Presence Entry</field>
+			<field name="res_model">conduite.conduite</field>
+			<field name="view_mode">tree,form,graph,pivot</field>
+		<field name="context">{
+                'search_default_eleve_id': [active_id],
+		        'default_eleve_id': active_id,
+            }</field>
+			<field name="domain">[]</field>
+		</record>
+
+
+		<record id="conduite_tree_view" model="ir.ui.view">
+			<field name="name">Conduite Tree</field>
+			<field name="model">conduite.conduite</field>
+			<field name="arch" type="xml">
+				<tree string="Presence Entry">
+					<field name="eleve_id"/>
+					<field name="date"/>
+					<field name="type"/>
+					<field name="semester"/>
+					<field name="year_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="conduite_pivot_view" model="ir.ui.view">
+			<field name="name">Conduite Pivot</field>
+			<field name="model">conduite.conduite</field>
+			<field name="arch" type="xml">
+				<pivot string="Presence Entry">
+					<field name="eleve_id" type="row"/>
+					<field name="year_id" type="col"/>
+					<field name="type" type="col"/>
+				</pivot>
+			</field>
+		</record>
+
+		<record id="conduite_graph_view" model="ir.ui.view">
+			<field name="name">Conduite graph</field>
+			<field name="model">conduite.conduite</field>
+			<field name="arch" type="xml">
+				<graph string="Presence Entry">
+					<field name="eleve_id"/>
+					<field name="year_id"/>
+					<field name="type"/>
+				</graph>
+			</field>
+		</record>
+
+</odoo>

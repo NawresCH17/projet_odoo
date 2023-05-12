@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="report_list"
+            model="eleve.eleve"
+            string="Student List"
+            report_type="qweb-pdf"
+            name="formation.report_template_liste"
+            file="formation.report_template_liste"
+            menu="True"
+        />
+
+        <template id="report_template_liste" >
+            <t t-call="web.html_container">
+
+                    <t t-call="web.report_layout">
+                        <div class="page" >
+                            <h2 style="text-align:center;font-weight: bold;color:DarkBlue">Student List</h2>
+                             <br></br>
+
+                            <table width="100%" border="1" class="table table-sm">
+                                <tr>
+								 <th width="10%">Num°</th>
+								 <th width="20%">FirstName</th>
+								 <th width="20%">LastName</th>
+								 <th width="20%">Num_Cin</th>
+                                 <th width="20%">Class</th>
+							    </tr>
+                                <t t-foreach="docs" t-as="o">
+                                  <tr>
+                                        <td><span style="font-size: 20;" t-field="o.name"/></td>
+                                        <td><span style="font-size: 20;" t-field="o.first_name" /></td>
+                                        <td><span style="font-size: 20;" t-field="o.last_name" /></td>
+                                        <td><span style="font-size: 20;" t-field="o.num_cin" /></td>
+                                        <td><span style="font-size: 20;" t-field="o.class_id" /></td>
+                                  </tr>
+                                </t>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+
+        </template>
+</odoo>

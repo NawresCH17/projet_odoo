@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_bibl_bibl,bibl_bibl_manager,model_bibl_bibl,base.group_user,1,1,1,1
+access_bibl_inscription,bibl_inscription_manager,model_bibl_inscription,base.group_user,1,1,1,1
+access_bibl_general,bibl_general_manager,model_bibl_general,base.group_user,1,1,1,1
+access_reserv_reserv,reserv_reserv_manager,model_reserv_reserv,base.group_user,1,1,1,1
+access_emprunt_emprunt,emprunt_emprunt_manager,model_emprunt_emprunt,base.group_user,1,1,1,1
+
+

@@ -9,8 +9,11 @@
             <field name="arch" type="xml">
                 <tree string="Reclamation">
                     <field name="name"/>
-                    <field name="code"/>
-                    <field name="reg_id"/>
+<!--                    <field name="reg_id"/>-->
+                    <field name="student_id"/>
+                    <field name="description"/>
+                    <field name="state"/>
+
                 </tree>
             </field>
         </record>
@@ -19,26 +22,30 @@
             <field name="model">claim.claim</field>
             <field name="arch" type="xml">
                 <form string="Reclamation">
+                     <header>
+                        <button name="action_new" states="new" string="New" type="object" class="oe_highlight" icon="fa-plus"/>
+                        <button name="action_done" states="new" string="Valid" type="object" class="oe_highlight" icon="fa-check"/>
+                        <button name="action_cancel" states="cancel" string="Cancel" type="object" class="oe_highlight" icon="fa-minus"/>
+                        <field name="state" widget="statusbar" clickable="true"/>
+                    </header>
+
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
                                 <field name="start_date"/>
                                 <field name="reg_id"/>
-                                <field name="state"/>
-                                <!--                         <field name="amount"/>-->
-                                <!--                         <field name="hours_nbr"/>-->
-                                <!--                         <field name="total"/>-->
+
                             </group>
                             <group>
                                 <field name="code"/>
                                 <field name="end_date"/>
-<!--                                <field name="student_id"/>-->
+                                <field name="student_id"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Description">
-                                <field name="description"/>
+                                <field name="description" widget="char_emojis"/>
 
                             </page>
                         </notebook>
@@ -105,6 +112,8 @@
             <field name="name">Reclamation</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">claim.claim</field>
+             <field name="view_mode">tree,calendar,form,graph,pivot</field>
+
         </record>
     </data>
 </odoo>

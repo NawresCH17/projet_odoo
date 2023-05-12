@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<report
+		id = "report_time_class"
+		model = "emploi.emploi"
+		string = "TimeTable by class"
+		report_type = "qweb-pdf"
+		name = "formation.time_class_report_view"
+		file = "formation.time_class_report_view"
+	/>
+		<template id="time_class_report_view">
+			<t t-call="web.html_container">
+				<t t-call="web.report_layout">
+
+					<div class="page">
+						<h1 style="text-align:center;font-weight: bold;color:DarkBlue">Timesheet</h1><br/><br/>
+						Class: <span><t t-esc="liste[0]['classe_ids']"/></span>
+					    <span style="text-align:center;margin-left:180px">Semester: <t t-esc="liste[0]['semester']"/></span>
+						<span style="margin-left:300px">Year: <t t-esc="liste[0]['year_id']"/></span>
+
+						<br/><br/><br/>
+						<table width="100%" border="1"  class="table">
+							<thead class="thead-dark">
+							  <tr>
+								<th width="10%">Hours</th>
+								<th width="20%">Monday</th>
+								<th width="20%">Tuesday</th>
+								<th width="20%">wednesday</th>
+								<th width="20%">Thursday</th>
+								<th width="20%">Friday</th>
+								<th width="20%">Saturday</th>
+							  </tr>
+							</thead>
+
+						<t t-foreach="liste" t-as="el">
+
+								<tr>
+									 <td><t t-esc="el['debut']" />-<t t-esc="el['fin']" /></td>
+									 <td>
+								     	 <t t-if="el['day']== 'Mon'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+									 <td>
+										 <t t-if="el['day']== 'Tue'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+									 <td>
+										 <t t-if="el['day']== 'Wed'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+									 <td>
+									  	 <t t-if="el['day']== 'Thur'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+
+									 <td>
+										  <t t-if="el['day']== 'Fri'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+							         <td>
+									   <t t-if="el['day']== 'sat'">
+										 <t t-esc="el['matter_id']"/>
+										 </t>
+										 <t t-else="">
+											 <center><p>--</p></center>
+										 </t>
+									 </td>
+								</tr>
+
+							</t>
+
+
+						</table>
+					</div>
+				</t>
+			</t>
+		</template>
+	</odoo>

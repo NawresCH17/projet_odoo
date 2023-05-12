@@ -13,4 +13,17 @@ class Claim(models.Model):
     description = fields.Text(string='Description', required=False, readonly=False)
     reg_id = fields.Many2one('registration.registration', string='Inscription')
     user_id = fields.Many2one('res.users', string="Responsible")
+    student_id = fields.Many2one('eleve.eleve', string='Student')
     state = fields.Selection([('new', 'New'), ('done', 'Valid'), ('cancel', 'Canceled')], string='Status')
+
+    def action_new(self):
+        self.state = 'new'
+        return True
+
+    def action_done(self):
+        self.state = 'done'
+        return True
+
+    def action_cancel(self):
+        self.state = 'cancel'
+        return True

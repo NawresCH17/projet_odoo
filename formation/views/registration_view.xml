@@ -15,6 +15,11 @@
                     <field name="cycle_id"/>
                     <field name="year_id"/>
                     <field name="student_id"/>
+                    <field name="state"
+                           decoration-warning="state == 'new'"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"
+                           widget="badge"/>
                 </tree>
             </field>
         </record>
@@ -25,20 +30,19 @@
             <field name="arch" type="xml">
                 <form string="Registration">
                     <header>
-                        <button name="action_new" states="cancel" string="New" type="object" class="oe_highlight"/>
-                        <button name="action_done" states="new" string="Valid" type="object" class="oe_highlight"/>
-                        <button name="action_cancel" states="new" string="Cancel" type="object" class="oe_highlight"/>
-                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
-                        <field name="state" widget="statusbar" clickable="true"/>
+                        <button name="action_done" string="Valid" type="object" class="btn-success" icon="fa-check" confirm="Are you sure that you need to confirm ?" attrs="{'invisible': [('state','=','cancel')]}" />
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel ?"/>
+                        <button name="print_report" string="Print File" type="object" class="btn-info" icon="fa-print" attrs="{'invisible': [('state','=','cancel')]}"/>
+                        <field name="state" statusbar_visible="new,done,cancel" widget="statusbar"/>
                     </header>
 
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="%(formation.claim_action_view)d"
+                            <button name="%(Services.claim_view_action)d"
                                     type="action"
                                     class="oe_inline oe_stat_button"
                                     icon="fa-book"
-                                    context="{'search_default_reg_id': active_id}"
+                                    context="{'default_claim_ids': active_id}"
                                     help="show the information for this">
                                 <field name="nbr" widget="statinfo" string="Claims"/>
                             </button>

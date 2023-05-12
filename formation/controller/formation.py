@@ -1,13 +1,12 @@
+from odoo import http
 
-from odoo.http import Controller, request, Response, route
 
-
-class Formation(Controller):
-    @route('/formation', type='http', auth='public')
+class Formation(http.Controller):
+    @http.route('/formation', type='http', auth='public', website=True)
     def render_web_page(self):
-        return request.render('formation.formation_page', {})
+        return http.request.render('formation.formation_page', {})
 
-    # @http.route('/formation/claim', type='http', auth='public')
-    # def navigate_to_another_page(self):
-    #     claim_ids = http.request.env['claim.claim'].sudo().search([])
-    #     return http.request.render('claim_page', {'claim_ids': claim_ids})
+    @http.route('/formation/claim', type='http', auth='public', website=True)
+    def navigate_to_another_page(self):
+        claim_ids = http.request.env['claims.claims'].sudo().search([])
+        return http.request.render('formation.claim_page', {'claim_ids': claim_ids})

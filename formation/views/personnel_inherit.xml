@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+            <record model="ir.ui.view" id="perso_inherit_form_view">
+                <field name="name">hr.employee.form.inherit</field>
+                <field name="model">hr.employee</field>
+                <field name="type">form</field>
+                 <field name="inherit_id" ref="hr.view_employee_form"/>
+                 <field name="arch" type="xml">
+
+                     <page name="hr_settings" position="after">
+	                    <page string='work Information' groups='formation.group_user'>
+		                    <group>
+		                    	<field name="personnel_ok"/>
+		                    	<field name="position"/>
+		                    	<field name="status" />
+                                <field name="sign_signature"/>
+		                    </group>
+	                    </page>
+
+                     </page>
+
+                </field>
+            </record>
+            <record model="ir.actions.act_window" id="perso_action_view">
+                <field name="name">Personnel</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">hr.employee</field>
+                <field name="view_mode">tree,form,kanban</field>
+                <field name="domain">[('personnel_ok','=',True)]</field>
+                <field name="context">{'default_personnel_ok':True}</field>
+            </record>
+</odoo>

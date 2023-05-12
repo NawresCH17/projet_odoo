@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<report
+		id = "report_emploi"
+		model = "timenet.timenet"
+		string = "TimeSheet"
+		report_type = "qweb-pdf"
+		name = "formation.emploi_report_view"
+		file = "formation.emploi_report_view"
+	/>
+		<template id="emploi_report_view">
+			<t t-call="web.html_container">
+				<t t-call="web.report_layout">
+					<div class="page">
+						<h1 style="text-align:center;font-weight: bold;color:DarkBlue">Timesheet</h1>
+                        <br/><br/>
+						<table width="100%" border="1"  class="table">
+							<tr>
+
+								<th width="10%">Semester</th>
+								<th width="20%">Class</th>
+                                <th width="20%">Session</th>
+
+							</tr>
+							<t t-foreach="docs" t-as="o">
+								<tr>
+                                   <td><span style="font-size: 18;" t-field="o.semester"/></td>
+									<td><span style="font-size: 18;" t-field="o.classe_ids"/></td>
+                                    <td><span t-field="o.session_id"/></td>
+								</tr>
+							</t>
+						</table>
+                        <br/>
+
+					</div>
+				</t>
+			</t>
+		</template>
+	</odoo>

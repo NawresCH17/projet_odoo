@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--TimeTable-->
+        <record id="time_tree_view" model="ir.ui.view">
+            <field name="name">emploi.emploi.tree</field>
+            <field name="model">emploi.emploi</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Session">
+                    <field name="day"/>
+                    <field name="prof_id"/>
+                    <field name="classe_ids"/>
+                    <field name="matter_id"/>
+                    <field name="debut" widget="float_time"/>
+                    <field name="fin" widget="float_time"/>
+                    <field name="semester"/>
+                    <field name="year_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="time_form_view" model="ir.ui.view">
+            <field name="name">emploi.emploi.form</field>
+            <field name="model">emploi.emploi</field>
+            <field name="arch" type="xml">
+                <form string="Session">
+                    <header>
+                       <button name="print_time" string="Print" type="object" class="oe_highlight" icon="fa-print"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="day"/>
+                                <field name="prof_id"/>
+                                <field name="matter_id"/>
+                                <field name="classe_ids"/>
+
+                            </group>
+                            <group>
+                                <field name="debut" widget="float_time"/>
+                                <field name="fin" widget="float_time"/>
+                                <field name="semester"/>
+                                <field name="year_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="time_pivot_view" model="ir.ui.view">
+			<field name="name">Session Pivot</field>
+			<field name="model">emploi.emploi</field>
+			<field name="arch" type="xml">
+				<pivot string="Session">
+					<field name="prof_id" type="row"/>
+					<field name="matter_id" type="row"/>
+					<field name="day" type="col"/>
+					<field name="debut" type="measure" widget="float_time"/>
+					<field name="fin" type="measure" widget="float_time"/>
+				</pivot>
+			</field>
+		</record>
+        <record id="emploi_calendar_view" model="ir.ui.view">
+            <field name="name">emploi.emploi.calendar</field>
+            <field name="model">emploi.emploi</field>
+            <field name="arch" type="xml">
+                <calendar string="Session" date_start="jour" color="classe_ids">
+                    <field name="prof_id"/>
+                    <field name="matter_id"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="time_view_search" model="ir.ui.view">
+            <field name="model">emploi.emploi</field>
+            <field name="arch" type="xml">
+                <search string="Scheduled Actions">
+                    <field name="prof_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="time_action_view">
+            <field name="name">Session</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">emploi.emploi</field>
+            <field name="view_mode">tree,form,pivot,calendar</field>
+        </record>
+        <record id="time_action_view2" model="ir.actions.act_window">
+			<field name="name">Session</field>
+			<field name="res_model">emploi.emploi</field>
+			<field name="view_mode">tree,form,graph,pivot</field>
+		    <field name="context">{
+                'search_default_prof_id': [active_id],
+		        'default_prof_id': active_id, }
+            </field>
+			<field name="domain">[]</field>
+		</record>
+    </data>
+</odoo>

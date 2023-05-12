@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="paperformat_a6_gs" model="report.paperformat">
+		<field name="name">A6-GS</field>
+		<field name="default" eval="True"/>
+		<field name="format">custom</field>
+		<field name="page_height">300</field>
+		<field name="page_width">125</field>
+		<field name="orientation">Landscape</field>
+		<field name="margin_top">15</field>
+		<field name="margin_bottom">15</field>
+		<field name="margin_left">3</field>
+		<field name="margin_right">3</field>
+		<field name="header_line" eval="False"/>
+		<field name="header_spacing">1</field>
+		<field name="dpi">80</field>
+	</record>
+    	 <report
+            id="report_cardpersonnel"
+            model="personnel.personnel"
+            string="Personnel Card"
+            report_type="qweb-pdf"
+            name="formation.report_template_PersonnelCard"
+            file="formation.report_template_PersonnelCard"
+            paperformat = "paperformat_a6_gs"
+            menu="True"
+        />
+
+  <template id="report_template_PersonnelCard">
+            <t t-call="web.html_container">
+
+            <div class="page">
+                <t t-foreach="docs" t-as="perso">
+                    <div class="col-md-6">
+
+                        <table style="width:270pt; height:155pt; border: 1pt solid black; border-collapse:separate; border-radius:8pt; margin:5pt">
+
+                            <td style="width:90pt;" valign="center">
+                                <h3>Personnel Card</h3>
+                                <table style="width:83pt; height:150pt">
+                                    <tr style="height:70%;">
+                                        <td align="center" valign="center">
+                                            <img t-att-src="image_data_uri(perso.photo)" style="max-height:85pt;max-width:90%" alt="Image"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td valign="center">
+                                <table style="width:170pt; height:85pt">
+                                    <tr><th>
+                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                             First Name:<t t-esc="perso.first_name"/>
+                                         </div>
+                                    </th></tr>
+                                    <tr><th>
+                                         <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                            Last Name:<t t-esc="perso.last_name"/>
+                                         </div>
+                                    </th></tr>
+                                    <tr><th>
+                                        <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                            Num CIN:<t t-esc="perso.num_cin"/>
+                                        </div>
+                                    </th></tr>
+                                    <tr><th>
+                                        <div style="font-size:15pt; margin-bottom:0pt;margin-top:0pt;" align="center">
+                                            Position:<t t-esc="perso.position"/>
+                                        </div>
+                                    </th></tr>
+
+                                </table>
+                            </td>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+  </template>
+</odoo>

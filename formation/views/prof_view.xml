@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Prof-->
+        <record id="prof_menu_action" model="ir.actions.act_window">
+            <field name="name">Professor</field>
+            <field name="res_model">prof.prof</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[]</field>
+        </record>
+        <record id="prof_kanban_view" model="ir.ui.view">
+            <field name="name">prof.prof.kanban</field>
+            <field name="model">prof.prof</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="photo"/>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="num_cin"/>
+
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <field name="photo" widget="image"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <p>
+                                            <field name="first_name"/>
+                                            <field name="last_name"/>
+                                        </p>
+                                    </strong>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    Status:
+                                    <field name="status"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    CIN:
+                                    <field name="num_cin"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="prof_form_view">
+            <field name="name">Professor</field>
+            <field name="model">prof.prof</field>
+            <field name="arch" type="xml">
+                <form string="Professor">
+
+                        <header>
+                            <button name="print_carte" string="Print Card" type="object" class="oe_highlight" icon="fa-print"/>
+                        </header>
+                        <br/>
+                        <br/>
+                        <sheet>
+                            <div class="oe_button_box" name="button_box">
+                            <button name="%(formation.time_action_view2)d"
+                                    type="action"
+                                    class="oe_inline oe_stat_button"
+                                    icon="fa-calendar"
+                                    context="{'search_default_prof_id': active_id}"
+                                    help="show the information for this">
+                                <field name="time" widget="statinfo" string="Seance"/>
+                            </button>
+                        </div>
+
+                        <div>
+                          <field name="photo" widget="image" class="oe_avatar oe_right"/>
+                          <div class="col-8">
+
+                            <h2>
+                                <group>
+                                    <field name="first_name" placeholder="First Name"/>
+                                </group>
+                                <group>
+                                    <field name="last_name" placeholder="Last Name"/>
+                                </group>
+                                <group>
+                                    <field name="name"/>
+                                </group>
+                            </h2>
+                          </div>
+                         <notebook>
+                            <page name="Professor" string="General Information ">
+                                <group>
+                                    <group string="Identity">
+                                        <field name="date_birth"/>
+                                        <field name="gender"/>
+                                        <field name="telephone"/>
+                                        <field name="email"/>
+                                        <field name="num_cin"/>
+                                        <field name="address"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="other information" string="other information">
+                                    <group string="Information">
+                                        <field name="status" widget="badge"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_takenup"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="sign_signature" widget="signature" options="{'full_name': 'first_name'}" />
+                                    </group>
+
+                            </page>
+                            <page name="list" string="List of classroom">
+                                <field name="class_id"/>
+                            </page>
+                         </notebook>
+                        </div>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="prof_tree_view" model="ir.ui.view">
+            <field name="name">profTree</field>
+            <field name="model">prof.prof</field>
+            <field name="arch" type="xml">
+                <tree string="Professor">
+
+                    <field name="name"/>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="num_cin"/>
+                    <field name="email"/>
+                    <field name="telephone"/>
+                    <field name="date_takenup"/>
+                    <field name="status"
+                           decoration-warning="status == 'P'"
+                           decoration-success="status == 'PE'"
+                           decoration-info="status == 'F'"
+                           widget="badge"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

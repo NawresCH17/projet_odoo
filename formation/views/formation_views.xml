@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+        <!--Matter-->
+        <record id="matter_tree_view" model="ir.ui.view">
+            <field name="name">matter.matter.tree</field>
+            <field name="model">matter.matter</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Matters">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="Moy_mat"/>
+                    <field name="max"/>
+                    <field name="prof_ids"/>
+                    <field name="module_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="matter_form_view" model="ir.ui.view">
+            <field name="name">matter.matter.form</field>
+            <field name="model">matter.matter</field>
+            <field name="arch" type="xml">
+                <form string="Matters">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="Moy_mat"/>
+                                <field name="prof_ids"/>
+                            </group>
+                            <group>
+                                <field name="max"/>
+                                <field name="type"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Modules">
+                                <field name="module_id">
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="matter_view_action">
+            <field name="name">Matter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">matter.matter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <!--MODULE-->
         <record id="module_tree_view" model="ir.ui.view">
@@ -11,7 +60,8 @@
                 <tree string="Modules">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="section_id"/>
+                    <field name="description"/>
+
                 </tree>
             </field>
         </record>
@@ -25,15 +75,15 @@
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="section_id"/>
                             </group>
                             <group>
                                 <field name="code"/>
+<!--                                <field name="matter_id"/>-->
                             </group>
                         </group>
                         <notebook>
                             <page string="Description">
-                                <field name="description"/>
+                                <field name="description" widget="char_emojis" />
                             </page>
                         </notebook>
                     </sheet>
@@ -48,7 +98,6 @@
                 <kanban>
                     <templates>
                         <field name="name"/>
-                        <field name="section_id"/>
                         <field name="description"/>
                         <field name="code"/>
                         <t t-name="kanban-box">
@@ -59,9 +108,7 @@
                                 <div class="o_kanban_details">
                                     <field name="code"/>
                                 </div>
-                                <div class="o_kanban_details">
-                                    <field name="section_id"/>
-                                </div>
+
                             </div>
                         </t>
                     </templates>
@@ -82,8 +129,10 @@
             <field name="model">section.section</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Section">
+                <tree string="Sector">
                     <field name="name"/>
+                    <field name="module_ids"/>
+                    <field name="level_id"/>
                 </tree>
             </field>
         </record>
@@ -92,21 +141,18 @@
             <field name="name">section.section.form</field>
             <field name="model">section.section</field>
             <field name="arch" type="xml">
-                <form string="Section">
+                <form string="Sector">
                     <sheet>
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="module_ids"/>
                                 <field name="level_id"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Modules">
                                 <field name="module_ids">
-                                    <tree>
-                                        <field name="name"/>
-                                        <field name="code"/>
-                                    </tree>
                                 </field>
                             </page>
                         </notebook>
@@ -116,7 +162,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="section_action_view_test">
-            <field name="name">Section</field>
+            <field name="name">Sector</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">section.section</field>
             <field name="view_mode">tree,form</field>
@@ -128,7 +174,7 @@
             <field name="model">level.level</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Niveau">
+                <tree string="Level">
                     <field name="name"/>
                     <field name="cycle_id"/>
                 </tree>
@@ -149,7 +195,7 @@
 
                         </group>
                         <notebook>
-                            <page string="Section">
+                            <page string="Sector">
                                 <field name="section_ids"/>
 
                             </page>
@@ -160,7 +206,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="level_action_view">
-            <field name="name">Niveau</field>
+            <field name="name">Level</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">level.level</field>
             <field name="view_mode">tree,form</field>
@@ -193,12 +239,7 @@
                                 <field name="code"/>
                             </group>
                         </group>
-                        <notebook>
-                            <page string="Niveau">
-                                <field name="level_ids"/>
 
-                            </page>
-                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -238,7 +279,7 @@
                         </group>
                         <notebook>
                             <page string="Description">
-                                <field name="description"/>
+                                <field name="description" widget="char_emojis" />
                             </page>
                         </notebook>
                     </sheet>
@@ -281,7 +322,7 @@
                         </group>
                         <notebook>
                             <page string="Description">
-                                <field name="description"/>
+                                <field name="description" widget="char_emojis"/>
 
                             </page>
                         </notebook>
@@ -298,29 +339,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <!--Service-->
-        <record id="service_tree_view" model="ir.ui.view">
-            <field name="name">service.service.tree</field>
-            <field name="model">service.service</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="Services">
-                    <field name="name"/>
-                    <field name="code"/>
-                    <field name="date_ask"/>
-                    <field name="category"/>
-                    <field name="student_id"/>
-                </tree>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="service_action_view">
-            <field name="name">Services</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">service.service</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
         <!--Class-->
         <record id="class_tree_view" model="ir.ui.view">
             <field name="name">class.class.tree</field>
@@ -330,7 +348,7 @@
                 <tree string="Class">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="prof_ids"/>
+
                 </tree>
             </field>
         </record>
@@ -339,40 +357,114 @@
             <field name="name">class.class.form</field>
             <field name="model">class.class</field>
             <field name="arch" type="xml">
-                <form string="Modules">
+                <form string="Class">
+
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="%(formation.eleve_menu_action)d"
+                         <div class="oe_button_box" name="button_box">
+                            <button name="%(formation.eleve_action_view2)d"
                                     type="action"
                                     class="oe_inline oe_stat_button"
                                     icon="fa-book"
-                                    context="{'search_default_reg_id': active_id}"
+                                    context="{'search_default_class_id': active_id}"
                                     help="show the information for this">
-                                <field name="nbr_std" widget="statinfo" string="Students"/>
+                                <field name="nbr_std" widget="statinfo" string="Students"
+                                />
                             </button>
                         </div>
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="code"/>
                             </group>
                             <group>
-                                <field name="prof_ids"/>
+                                <field name="code"/>
+                                 <field name="capacity"/>
                             </group>
+                            <group>
+                                <field name="description" widget="char_emojis"/>
+                            </group>
+
                         </group>
                         <notebook>
-                            <page string="Description">
-                                <field name="description"/>
+
+                            <page string="List of Professor">
+                                <field name="prof_ids" />
                             </page>
+
                         </notebook>
                     </sheet>
                 </form>
+            </field>
+        </record>
+        <record id="class_graph_view" model="ir.ui.view">
+            <field name="name">class.class.graph</field>
+            <field name="model">class.class</field>
+            <field name="arch" type="xml">
+                <graph string="Graph">
+                    <field name="name"/>
+                    <field name="prof_ids"/>
+                </graph>
+            </field>
+        </record>
+        <record id="class_view_pivot" model="ir.ui.view">
+            <field name="name">class.class.pivot</field>
+            <field name="model">class.class</field>
+            <field name="arch" type="xml">
+                <pivot string="Description">
+                    <field name="name"/>
+                    <field name="salle_ids"/>
+                </pivot>
             </field>
         </record>
         <record model="ir.actions.act_window" id="class_action_view">
             <field name="name">Class</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">class.class</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+        </record>
+
+    <!--Salle-->
+        <record id="salle_tree_view" model="ir.ui.view">
+            <field name="name">.tree</field>
+            <field name="model">salle.salle</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="salle">
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="bloc"/>
+                    <field name="class_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="salle_form_view" model="ir.ui.view">
+            <field name="name">salle.salle.form</field>
+            <field name="model">salle.salle</field>
+            <field name="arch" type="xml">
+                <form string="Salle">
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="capacity"/>
+                            </group>
+                            <group>
+                                <field name="bloc"/>
+                            </group>
+                            <group>
+                                <field name="class_ids"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="salle_action_view">
+            <field name="name">salle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">salle.salle</field>
             <field name="view_mode">tree,form</field>
         </record>
 

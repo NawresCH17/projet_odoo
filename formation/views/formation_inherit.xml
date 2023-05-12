@@ -16,7 +16,7 @@
         </field>
     </record>
 
-			<!--form view-->
+	<!--form view-->
     <record model="ir.ui.view" id="teacher_form_view">
         <field name="name">hr.employee.form</field>
         <field name="model">hr.employee</field>
@@ -49,6 +49,8 @@
                                         <field name="department_id"/>
                                         <field name="job_id"/>
                                         <field name="class_id"/>
+                                        <field name="sign_signature" widget="signature" options="{'full_name': 'name'}" />
+
                                     </group>
                                 </group>
                                 <field name="notes" placeholder="Other Information ..." colspan="4"/>

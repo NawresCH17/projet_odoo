@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<report
+		id = "report_timetable"
+		model = "emploi.emploi"
+		string = "TimeSheet"
+		report_type = "qweb-pdf"
+		name = "formation.timesheet_report_view"
+		file = "formation.timesheet_report_view"
+	/>
+		<template id="timesheet_report_view">
+			<t t-call="web.html_container">
+				<t t-call="web.report_layout">
+					<div class="page">
+						<h1 style="text-align:center;font-weight: bold;color:DarkBlue">Sessions</h1>
+                        <br/><br/><br/>
+						<table width="100%" border="1"  class="table">
+							<tr>
+								<th width="10%">Day</th>
+								<th width="20%">Professor</th>
+								<th width="20%">Class</th>
+								<th width="20%">Matter</th>
+								<th width="20%">StartHour</th>
+								<th width="20%">EndHour</th>
+
+							</tr>
+							<t t-foreach="docs" t-as="o">
+								<tr>
+									<td><span style="font-size: 18;" t-field="o.day"/></td>
+									<td><span style="font-size: 18;" t-field="o.prof_id" /></td>
+									<td><span style="font-size: 18;" t-field="o.classe_ids" /></td>
+									<td><span style="font-size: 18;" t-field="o.matter_id" /></td>
+									<td><span style="font-size: 23;" t-field="o.debut" widget="float_time"/></td>
+									<td><span style="font-size: 23;" t-field="o.fin" widget="float_time"/></td>
+								</tr>
+							</t>
+						</table>
+					</div>
+				</t>
+			</t>
+		</template>
+	</odoo>

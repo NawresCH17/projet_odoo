@@ -16,3 +16,5 @@ class Service(models.Model):
                                  ('certificate_registration', 'certificate_registration'),
                                  ('internship_doc', 'internship documents')], string='Category')
     state = fields.Selection([('in progress', 'In progress'), ('done', 'Valid'), ('cancel', 'Canceled')], string='Status')
+
+

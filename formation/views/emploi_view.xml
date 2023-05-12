@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!--TimeTable-->
+        <record id="time_tree_view" model="ir.ui.view">
+            <field name="name">timenet.timenet.tree</field>
+            <field name="model">timenet.timenet</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="TimeTable">
+                    <field name="code"/>
+                    <field name="classe_ids"/>
+                    <field name="semester"/>
+                    <field name="year_id"/>
+                    <field name="session_id"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="time_form_view" model="ir.ui.view">
+            <field name="name">timenet.timenet.form</field>
+            <field name="model">timenet.timenet</field>
+            <field name="arch" type="xml">
+                <form string="TimeTable">
+
+                    <header>
+                       <button name="print_emploi" string="Print Timesheet" type="object" class="oe_highlight" icon="fa-print"/>
+                    </header>
+
+                    <sheet>
+                       <div>
+                           <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="classe_ids"/>
+                                <field name="semester"/>
+                                <field name="year_id"/>
+                            </group>
+                          </group>
+                           <group>
+                               <field name="session_id"/>
+                           </group>
+
+                       </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="emploi_pivot_view" model="ir.ui.view">
+			<field name="name">TimeTable Pivot</field>
+			<field name="model">timenet.timenet</field>
+			<field name="arch" type="xml">
+				<pivot string="TimeTable">
+					<field name="classe_ids" type="row"/>
+					<field name="session_id" type="row"/>
+					<field name="semester" type="col"/>
+					<field name="year_id" type="measure"/>
+
+				</pivot>
+			</field>
+		</record>
+        <record model="ir.actions.act_window" id="timenet_action_view">
+            <field name="name">TimeTable</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">timenet.timenet</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+    </data>
+</odoo>

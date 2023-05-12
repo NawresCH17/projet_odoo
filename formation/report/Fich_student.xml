@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="report_fich"
+            model="eleve.eleve"
+            string="Student Fich"
+            report_type="qweb-pdf"
+            name="formation.report_template_fiche"
+            file="formation.report_template_fiche"
+            menu="True"
+        />
+
+        <template id="report_template_fiche" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.report_layout">
+
+                        <div class="page" >
+                            <h2 style="text-align:center;font-weight: bold;">Student Fich</h2>
+                            <t t-if="o.photo">
+								<img t-att-src="image_data_uri(o.photo)" style="max-height: 100px; float:right; position:relative;" alt="Logo"/>
+                            </t>
+                            <table style="width:90%;margin-left:45px;margin-top:35px">
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Inscription Name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.name"/></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">First Name </td>
+                                        <td><span style="font-size: 20;" t-field="o.first_name" /></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Last Name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.last_name" /></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Num CIN: </td>
+                                        <td><span style="font-size: 20;" t-field="o.num_cin" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Telephone: </td>
+                                        <td><span style="font-size: 20;" t-field="o.telephone" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">E_mail: </td>
+                                        <td><span style="font-size: 20;" t-field="o.email" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Address: </td>
+                                        <td><span style="font-size: 20;" t-field="o.address" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Class: </td>
+                                        <td><span style="font-size: 20;" t-field="o.class_id" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">State: </td>
+                                        <td><span style="font-size: 20;" t-field="o.status" /></td></tr>
+                                     <br/><br/>
+
+                            </table>
+                            <br/><br/><br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+</odoo>

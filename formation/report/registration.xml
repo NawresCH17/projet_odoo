@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <template id="report_template_reg">
+     <report
+            id="report_registration"
+            model="registration.registration"
+            string="Dossier Inscription"
+            report_type="qweb-pdf"
+            name="formation.report_template_reg"
+            file="formation.report_template_reg"
+            menu="True"
+        />
+
+        <template id="report_template_reg" >
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.external_layout">
+                    <t t-call="web.report_layout">
 
-                        <div class="page">
-                            <div class="row">
-                                <t t-if="entete">
-							     <img t-attf-src="static/description/logo.png" style="width: 100%; height:200px;"/>
-						       </t>
-                                <h3 style="text-align:center;font-weight: bold;">FICHE OF INSCRIPTION</h3>
-							   <br/>
+                        <div class="page" >
+                            <h2 style="text-align:center;font-weight: bold;">FICHE OF INSCRIPTION</h2>
+                               <br/><br/>
+                                <table style="width:90%;padding:6px;margin-left:30px;border: 1px solid black;">
+									<tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">Inscription Name: </td>
+                                        <td><span style="font-size:20;" t-field="o.name"/></td></tr>
+									<tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">Code </td>
+                                        <td><span style="font-size: 20;" t-field="o.code" /></td></tr>
+									<tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">Student name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.student_id" /></td></tr>
+									<tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">Date inscription: </td>
+                                        <td><span style="font-size: 20;" t-field="o.start_date" /></td></tr>
+									<tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">State: </td>
+                                        <td><span style="font-size: 20;" t-field="o.state" /></td></tr>
+                                    <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;padding-bottom:9px">Cycle: </td>
+                                        <td><span style="font-size: 20;" t-field="o.cycle_id" /></td></tr>
 
-                                <div class="col-xs-2">
-                                    <p style="color:red;font-weight: bold;">Nom:</p>
-                                    <p t-field="o.name"/>
-                                </div>
-                                <div class="col-xs-2">
-                                    <p style="color:red;font-weight: bold;">Code:</p>
-                                    <p t-field="o.code"/>
-                                </div>
-                                <div class="col-xs-2">
-                                    <p style="color:red;font-weight: bold;">Student name:</p>
-                                    <p t-field="o.student_id"/>
-                                </div>
-                                <div class="col-xs-2">
-                                    <p style="color:red;font-weight: bold;"> Date inscription:</p>
-                                    <p t-field="o.start_date"/>
-                                </div>
+                                    <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Description: </td>
+                                        <td><span style="font-size: 20;" t-field="o.description" /></td></tr>
 
-                            </div>
+								</table>
+
+
                         </div>
-
                     </t>
                 </t>
             </t>

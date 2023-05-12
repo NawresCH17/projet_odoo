@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api,_
 from odoo.exceptions import UserError
 
 
@@ -47,7 +47,7 @@ class Level(models.Model):
     _description = 'level.level'
     name = fields.Char(string='Name', required=False, readonly=False)
     description = fields.Text(string='Description', required=False, readonly=False)
-    section_ids = fields.One2many('section.section', 'level_id', string='Section')
+    section_ids = fields.Many2one('section.section', string='Section')
     cycle_id = fields.Many2one('cycle.cycle', string='Cycle')
 
 
@@ -57,8 +57,8 @@ class Section(models.Model):
 
     name = fields.Char(string='Name', required=False, readonly=False)
     description = fields.Text(string='Description', required=False, readonly=False)
-    module_ids = fields.One2many('module.module', 'section_id', string='Module')
-    level_id = fields.Many2one('level.level', string='Level')
+    module_ids = fields.Many2one('module.module', string='Module')
+    level_id = fields.One2many('level.level', 'section_ids', string='Level')
 
 
 class Module(models.Model):
@@ -68,7 +68,24 @@ class Module(models.Model):
     name = fields.Char(string='Name', required=True)
     code = fields.Char(string='Code', default='001')
     description = fields.Text(string='Description')
-    section_id = fields.Many2one('section.section', string='Section')
+    section_id = fields.One2many('section.section','module_ids', string='Section')
+    matter_id = fields.One2many('matter.matter', 'module_id', string='Matter')
+
+
+class Matter(models.Model):
+    _name = 'matter.matter'
+    _description = 'Matters'
+
+    name = fields.Char(string='Name', required=True)
+    Moy_mat = fields.Float(string='Average')
+    max = fields.Integer(string="Coefficient")
+    module_id = fields.Many2one('module.module', string='Modules')
+    prof_ids = fields.Many2one('prof.prof', string='Professor')
+    type = fields.Selection([
+        ('theorique', 'theoretical'),
+        ('pratique', 'Pratique')
+    ], string="Type",
+        required=True, )
 
 
 class Class(models.Model):
@@ -78,10 +95,12 @@ class Class(models.Model):
     name = fields.Char(string='Name', required=True)
     code = fields.Char(string='Code')
     description = fields.Text(string='Description')
-
     nbr_std = fields.Integer(compute='_compute_student', string="Students")
-    prof_ids = fields.Many2one('hr.employee', string='Prof')
-    student_ids = fields.One2many('eleve.eleve','class_id', string='Student')
+    capacity=fields.Integer(string='capacity')
+    # prof_ids = fields.One2many('prof.prof','class_id', string='Prof')
+    prof_ids = fields.Many2many('prof.prof', relation='class_prof_rel', column1='name', column2='first_name')
+    student_ids = fields.One2many('eleve.eleve', 'class_id', string='Student')
+    salle_ids = fields.One2many('salle.salle', 'class_ids', string='Salle')
 
     @api.depends('student_ids')
     def _compute_student(self):
@@ -92,6 +111,12 @@ class Salle(models.Model):
     _name = 'salle.salle'
     _description = 'salle records'
 
-    nom_salle = fields.Char(string="Nom de la salle")
-    capacity = fields.Integer(string="Capacité pour les cours")
-    bloc=fields.Selection([('a','A'),('b','B'),('C','C'),('D','D')],string="Bloc")
+    name = fields.Char(string='Salle', required=True)
+    capacity = fields.Integer(string="Capacity")
+    bloc = fields.Selection([('a','A'),('b','B'),('C','C'),('D','D')], string="Bloc", default='A')
+    class_ids = fields.Many2one('class.class', string='Class')
+
+
+
+
+
