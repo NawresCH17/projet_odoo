@@ -15,7 +15,7 @@ class TimeTable(models.TransientModel):
         ('s3', 'Semester 3'),
     ], required=True)
 
-    def imprimer_timetable_prof(self):
+    def imprimer_timetable_class(self):
      data = {}
      liste = []
      timetable = self.env['emploi.emploi'].search([('classe_ids', '=', self.class_id.id),('semester','=',self.sem)])

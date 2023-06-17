@@ -12,7 +12,7 @@
 				</group>
 
 				<group style="margin-left:450px;">
-					<button  name="imprimer_timetable_prof" type="object" icon="fa-print" stirng="Print" class="btn-info" />
+					<button  name="imprimer_timetable_class" type="object" icon="fa-print" stirng="Print" class="btn-info" />
 					<button special="cancel" string="Cancel" icon="fa-trash"/>
 				</group>
 			</form>

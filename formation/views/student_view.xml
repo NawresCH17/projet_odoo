@@ -47,7 +47,7 @@
                                     <strong>LastName:</strong> <field name="last_name"/>
 
                                     <div class="o_kanban_details">
-                                        <strong>ID:</strong> <field name="name"/>
+                                        <strong> ID:</strong> <field name="name"/>
                                     </div>
                                     <div class="o_kanban_details">
                                         <strong> CIN:</strong> <field name="num_cin"/>
@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="o_kanban_details">
-                                        <strong>Class:</strong> <field name="class_id"/>
+                                        <strong> Class:</strong> <field name="class_id"/>
 
                                     </div>
                                 </div>
@@ -76,7 +76,6 @@
                     <header>
                         <button name="print_carte" string="Print Card" type="object" class="btn-info" icon="fa-print"/>
                         <button name="print_fich" string="Print Fich" type="object" class="btn-info" icon="fa-print"/>
-
                     </header>
                     <sheet>
 
@@ -95,7 +94,7 @@
 
 
                         <field name="photo" widget="image" class="oe_avatar oe_right"/>
-                        <div class="col-8">
+                         <div class="col-8">
 
                             <h2>
                                 <group>

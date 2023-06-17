@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="program_examen_tree_view" model="ir.ui.view">
+			<field name="name">Programme Tree</field>
+			<field name="model">program.program</field>
+			<field name="arch" type="xml">
+				<tree string="Program of exam">
+					<field name="name"/>
+					<field name="date_debut"/>
+					<field name="date_fin"/>
+					<field name="year_id"/>
+					<field name="personnel_id"/>
+					<field name="type"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="program_examen_form_view">
+	        <field name="name">Program</field>
+	        <field name="model">program.program</field>
+	        <field name="arch" type="xml">
+	            <form string="Program">
+	            	<sheet>
+	            		<group>
+	            			<group>
+		            			<field name="name"/>
+								<field name="date_debut"/>
+								<field name="date_fin"/>
+			            	</group>
+			            	<group>
+			            		<field name="year_id"/>
+								<field name="personnel_id"/>
+								<field name="type"/>
+			            	</group>
+		            	</group>
+		            	<notebook>
+			                <page string="Programme">
+								<field name="line_ids"/>
+			                </page>
+	                	</notebook>
+	            	</sheet>
+					<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+	            </form>
+	        </field>
+	    </record>
+        <record id="program_examen_menu_action" model="ir.actions.act_window">
+			<field name="name">Programme d'examen</field>
+			<field name="res_model">program.program</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+
+		</record>
+	    <record id="program_examen_line_menu_action" model="ir.actions.act_window">
+			<field name="name">Programme d'examen</field>
+			<field name="res_model">program.program_line</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+		</record>
+
+		<record id="program_examen_line_tree_view" model="ir.ui.view">
+			<field name="name">Programme Tree</field>
+			<field name="model">program.program_line</field>
+			<field name="arch" type="xml">
+				<tree string="Program exam">
+					<field name="date_examen"/>
+					<field name="heure_debut" widget="float_time"/>
+					<field name="heure_fin" widget="float_time"/>
+					<field name="prof_id"/>
+					<field name="classe_ids"/>
+					<field name="matter_id"/>
+					<field name="coefficient"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="gescoth_program_examen_line_form_view">
+	        <field name="name">Programme form</field>
+	        <field name="model">program.program_line</field>
+	        <field name="arch" type="xml">
+	            <form string="Program exam">
+	            	<sheet>
+	            		<group>
+	            			<group>
+		            			<field name="date_examen"/>
+								<field name="heure_debut" widget="float_time"/>
+								<field name="heure_fin" widget="float_time"/>
+			            	</group>
+			            	<group>
+								<field name="prof_id"/>
+								<field name="classe_ids"/>
+								<field name="matter_id"/>
+								<field name="coefficient"/>
+			            	</group>
+		            	</group>
+	            	</sheet>
+	            </form>
+	        </field>
+	    </record>
+    </data>
+</odoo>

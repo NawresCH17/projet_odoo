@@ -11,7 +11,8 @@
 
     # data files always loaded at installation
     'data': [
-
+        'security/ir.model.access.csv',
+        'views/program_view.xml',
         'menu.xml'
     ],
     # data files containing optionally loaded demonstration data

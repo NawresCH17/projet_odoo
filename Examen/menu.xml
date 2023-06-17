@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <menuitem
+            id="Examen_root_aze"
+            name="Exams"/>
 
+              <menuitem id="Program_menu"
+               name="Program"
+               parent="Examen_root_aze"
+               action="program_examen_menu_action"
+               sequence="1"
+              />
 </odoo>
