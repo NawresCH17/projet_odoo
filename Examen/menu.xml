@@ -3,12 +3,52 @@
 
     <menuitem
             id="Examen_root_aze"
-            name="Exams"/>
+            name="Exams"
+	/>
 
-              <menuitem id="Program_menu"
-               name="Program"
+	         <menuitem id="Program_menu"
+               name="Program Exam"
                parent="Examen_root_aze"
                action="program_examen_menu_action"
                sequence="1"
-              />
+			 />
+	         <menuitem
+               id="noteExamen_root_menu"
+               name="Note"
+			   parent="Examen_root_aze"
+			   sequence="2"
+	         />
+	          <menuitem id="SaisieNote_menu"
+                name="Saisie Note"
+                parent="noteExamen_root_menu"
+                action="noteS_menu_action"
+                sequence="1"
+			 />
+              <menuitem id="Note_menu"
+                name="Consulter les Notes"
+                parent="noteExamen_root_menu"
+                action="note_menu_action"
+                sequence="2"
+			  />
+	         <!--<menuitem
+		        id="impression_fiche_note_menu"
+		        parent="Examen_root_aze"
+				name="Fiche de note"
+		        action="fiche_note_menu_action"
+		/>-->
+             <menuitem id="Result_menu"
+                 name="Result"
+               parent="Examen_root_aze"
+               action="resultat_examen_menu_action"
+               sequence="3"
+			 />
+
+	         <menuitem
+			    id="appreciation_menu"
+			    parent="Examen_root_aze"
+			    name="Appréciation"
+			    action="appreciation_menu_action"
+			   />
+
+
 </odoo>

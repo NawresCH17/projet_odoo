@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="noteS_menu_action" model="ir.actions.act_window">
+			<field name="name">Saisie Note</field>
+			<field name="res_model">listenote.listenote</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{"search_default_annee_scolaire":1}</field>
+			<field name="domain">[]</field>
+			<field name="help" type="html">
+				<p class="oe_view_noconten_create">
+					Pas de note à saisir
+					<p>Il est conseiller d'utiliser l'assistant pour générer les notes à saisir !</p>
+				</p>
+			</field>
+		</record>
+		<record id="noteS_tree_view" model="ir.ui.view">
+			<field name="name">Note Tree</field>
+			<field name="model">listenote.listenote</field>
+			<field name="arch" type="xml">
+				<tree string="Note" editable="top">
+					<field name="eleve_id" />
+                    <field name="classe_id"/>
+					<field name="matter_id"/>
+					<field name="annee_scolaire" />
+					<field name="saison" />
+					<field name="note_intero"/>
+					<field name="note_devoir"/>
+					<field name="note_cc"/>
+
+
+				</tree>
+			</field>
+		</record>
+    </data>
+</odoo>

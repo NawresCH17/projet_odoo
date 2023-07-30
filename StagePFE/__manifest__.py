@@ -1,8 +1,8 @@
 {
     'name': "Odoo universitaire ",
     'version': '1.0',
-    'depends': ['base', 'mail', 'formation'],
-    'summary': 'library management',
+    'depends': ['base', 'mail', 'hr', 'formation'],
+    'summary': 'Stage PFE',
     'author': "stage",
     'category': 'Category',
     'description': """
@@ -12,10 +12,6 @@
     # data files always loaded at installation
     'data': [
         'security/ir.model.access.csv',
-        'views/bib_view.xml',
-        'views/reservation_view.xml',
-        'views/emprunt_view.xml',
-        'reports/report_cart.xml',
         'menu.xml'
     ],
     # data files containing optionally loaded demonstration data

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="note_menu_action" model="ir.actions.act_window">
+			<field name="name">Notes</field>
+			<field name="res_model">note.note</field>
+			<field name="view_mode">tree,form,graph,pivot</field>
+			<field name="context">{"search_default_annee_scolaire":1}</field>
+			<field name="domain">[]</field>
+			<field name="help" type="html">
+				<p class="oe_view_noconten_create">
+					Pas de note à saisir
+					<p>Il est conseiller d'utiliser l'assistant pour générer les notes à saisir !</p>
+				</p>
+			</field>
+		</record>
+		<record id="note_tree_view" model="ir.ui.view">
+			<field name="name">Note Tree</field>
+			<field name="model">note.note</field>
+			<field name="arch" type="xml">
+				<tree string="Note" editable="top">
+					<field name="eleve_id" />
+					<field name="type" />
+					<field name="matter_id"/>
+					<field name="annee_scolaire" />
+					<field name="saison" />
+					<field name="note_intero"/>
+					<field name="note_devoir"/>
+					<field name="moy_classe"/>
+					<field name="note_compo"/>
+					<field name="moyenne" />
+					<field name="appreciation" readonly="1"
+                           widget="badge"/>
+
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="serial_search_view" model="ir.ui.view">
+		   <field name="name">Note Search View</field>
+		   <field name="model">note.note</field>
+		   <field name="arch" type="xml">
+		       <search string="Rechercher les notes">
+		           <field name="matter_id"/>
+		           <field name="saison"/>
+		           <field name="type"/>
+		           <field name="eleve_id"/>
+		           <filter string="Semetre 1" name="s1" domain="[('saison','=','s1')]"/>
+		           <filter string="Semetre 2" name="s2" domain="[('saison','=','s2')]"/>
+		           <filter string="Semetre 3" name="s3" domain="[('saison','=','s3')]"/>
+		           <group expand="1" string="Group By">
+		               <filter string="Saison" name="saison" context="{'group_by':'saison'}"/>
+		               <filter string="Elève" name="eleve_id" context="{'group_by':'eleve_id'}"/>
+		               <filter string="Classe" name="classe_id" context="{'group_by':'classe_id'}"/>
+		               <filter string="Matière" name="matter_id" context="{'group_by':'matter_id'}"/>
+		           </group>
+		       </search>
+		   </field>
+		</record>
+
+		<record id="note_pivot_view" model="ir.ui.view">
+			<field name="name">Note Pivot</field>
+			<field name="model">note.note</field>
+			<field name="arch" type="xml">
+				<pivot string="Note">
+					<field name="eleve_id" type="row"/>
+					<field name="annee_scolaire" type="col"/>
+					<field name="saison" type="col"/>
+					<field name="matter_id" type="col"/>
+					<field name="note_intero" type="measure"/>
+					<field name="note_devoir" type="measure"/>
+					<field name="moy_classe" type="measure"/>
+					<field name="note_compo" type="measure"/>
+					<field name="moyenne" type="measure"/>
+				</pivot>
+			</field>
+		</record>
+
+
+		<record id="note_graph_view" model="ir.ui.view">
+			<field name="name">Note graph</field>
+			<field name="model">note.note</field>
+			<field name="arch" type="xml">
+				<graph string="Conduite">
+					<field name="eleve_id"/>
+					<field name="annee_scolaire"/>
+					<field name="moy_classe" type="measure"/>
+					<field name="note_compo" type="measure"/>
+					<field name="moyenne" type="measure"/>
+				</graph>
+			</field>
+		</record>
+
+
+		<record id="appreciation_menu_action" model="ir.actions.act_window">
+			<field name="name">Appréciation</field>
+			<field name="res_model">appreciation.appreciation</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help" type="html">
+				<p class="oe_view_noconten_create">
+					Créez votre première appréciation
+				</p>
+			</field>
+		</record>
+        <record id="appreciation_tree_view" model="ir.ui.view">
+			<field name="name">Appréciation Tree</field>
+			<field name="model">appreciation.appreciation</field>
+			<field name="arch" type="xml">
+				<tree string="Appréciation" editable="top">
+					<field name="name"/>
+					<field name="inf"/>
+					<field name="sup"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="resultat_examen_menu_action" model="ir.actions.act_window">
+			<field name="name">Resultat d'examen</field>
+			<field name="res_model">examen.resultat</field>
+			<field name="view_mode">graph,tree,form,pivot</field>
+			<field name="domain">[]</field>
+			<field name="help" type="html">
+				<p class="oe_view_noconten_create">
+					Pas d'informaton à afficher
+				</p>
+			</field>
+		</record>
+
+		 <record id="resultat_examen_tree_view" model="ir.ui.view">
+			<field name="name">Resutalt tree</field>
+			<field name="model">examen.resultat</field>
+			<field name="arch" type="xml">
+				<tree string="Result exam">
+					<field name="eleve_id"/>
+					<field name="classe_id"/>
+					<field name="saison"/>
+					<field name="annee_scolaire"/>
+					<field name="moyenne"/>
+					<field name="state"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"
+                           widget="badge"/>
+					<field name="result"
+                           decoration-success="result == 'admis'"
+                           decoration-danger="result == 'refus'"
+                           widget="badge"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="resultat_search_view" model="ir.ui.view">
+		   <field name="name">Resultat Search View</field>
+		   <field name="model">examen.resultat</field>
+		   <field name="arch" type="xml">
+		       <search string="Rechercher les notes">
+		           <field name="eleve_id"/>
+		           <field name="classe_id"/>
+		           <field name="saison"/>
+		           <filter string="Semetre 1" name="s1" domain="[('saison','=','s1')]"/>
+		           <filter string="Semetre 2" name="s2" domain="[('saison','=','s2')]"/>
+		           <filter string="Semetre 3" name="s3" domain="[('saison','=','s3')]"/>
+		           <group expand="1" string="Group By">
+		               <filter string="Saison" name="saison" context="{'group_by':'saison'}"/>
+		               <filter string="Elève" name="eleve_id" context="{'group_by':'eleve_id'}"/>
+		               <filter string="Classe" name="classe_id" context="{'group_by':'classe_id'}"/>
+		               <filter string="Année scolaire" name="annee_scolaire" context="{'group_by':'annee_scolaire'}"/>
+		           </group>
+		       </search>
+		   </field>
+		</record>
+
+		<record id="resultat_pivot_view" model="ir.ui.view">
+			<field name="name">Resultat Pivot</field>
+			<field name="model">examen.resultat</field>
+			<field name="arch" type="xml">
+				<pivot string="Note">
+					<field name="eleve_id" type="row"/>
+					<field name="annee_scolaire" type="col"/>
+					<field name="classe_id" type="col"/>
+					<field name="saison" type="col"/>
+					<field name="moyenne" type="measure"/>
+				</pivot>
+			</field>
+		</record>
+
+
+		<record id="resultat_graph_view" model="ir.ui.view">
+			<field name="name">Resultat graph</field>
+			<field name="model">examen.resultat</field>
+			<field name="arch" type="xml">
+				<graph string="Resultat">
+					<field name="eleve_id"/>
+					<field name="annee_scolaire"/>
+					<field name="result"/>
+					<field name="moyenne" type="measure"/>
+				</graph>
+			</field>
+		</record>
+
+	</data>
+</odoo>

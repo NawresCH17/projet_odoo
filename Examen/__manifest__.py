@@ -13,6 +13,10 @@
     'data': [
         'security/ir.model.access.csv',
         'views/program_view.xml',
+        'views/note_view.xml',
+        'views/note1_view.xml',
+        #'report/fiche_note_report.xml',
+        #'Wizard/fiche_note.xml',
         'menu.xml'
     ],
     # data files containing optionally loaded demonstration data

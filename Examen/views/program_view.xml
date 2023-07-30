@@ -11,6 +11,8 @@
 					<field name="date_debut"/>
 					<field name="date_fin"/>
 					<field name="year_id"/>
+					<field name="semester"/>
+					<field name="session"/>
 					<field name="personnel_id"/>
 					<field name="type"/>
 				</tree>
@@ -31,6 +33,8 @@
 			            	</group>
 			            	<group>
 			            		<field name="year_id"/>
+								<field name="semester"/>
+					            <field name="session"/>
 								<field name="personnel_id"/>
 								<field name="type"/>
 			            	</group>
@@ -73,13 +77,15 @@
 					<field name="heure_fin" widget="float_time"/>
 					<field name="prof_id"/>
 					<field name="classe_ids"/>
+					<field name="salle_id"/>
 					<field name="matter_id"/>
 					<field name="coefficient"/>
+
 				</tree>
 			</field>
 		</record>
 
-		<record model="ir.ui.view" id="gescoth_program_examen_line_form_view">
+		<record model="ir.ui.view" id="program_examen_line_form_view">
 	        <field name="name">Programme form</field>
 	        <field name="model">program.program_line</field>
 	        <field name="arch" type="xml">
@@ -94,8 +100,10 @@
 			            	<group>
 								<field name="prof_id"/>
 								<field name="classe_ids"/>
+								<field name="salle_id"/>
 								<field name="matter_id"/>
 								<field name="coefficient"/>
+
 			            	</group>
 		            	</group>
 	            	</sheet>
