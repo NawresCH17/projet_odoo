@@ -12,6 +12,11 @@
     # data files always loaded at installation
     'data': [
         'security/ir.model.access.csv',
+        'views/convention_view.xml',
+        'views/documents_view.xml',
+        'views/plan_view.xml',
+        'reports/report_convention.xml',
+        'wizard/view_import_chart.xml',
         'menu.xml'
     ],
     # data files containing optionally loaded demonstration data

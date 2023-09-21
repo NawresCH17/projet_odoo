@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="plan_tree_view" model="ir.ui.view">
+            <field name="name">plan.plan.tree</field>
+            <field name="model">plan.plan</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Plan of work">
+
+                    <field name="title"/>
+                     <field name="state"
+                                 decoration-warning="state == 'new'"
+                                 decoration-success="state == 'done'"
+                                 decoration-danger="state == 'cancel'"
+                                 widget="badge"/>
+                    <field name="Technology"/>
+                    <field name="company"/>
+                    <field name="encadrant"/>
+                </tree>
+            </field>
+        </record>
+        <record id="plan_form_view" model="ir.ui.view">
+            <field name="name">plan.plan.form</field>
+            <field name="model">plan.plan</field>
+            <field name="arch" type="xml">
+                <form string="Plan of work">
+                     <header>
+
+                        <button name="action_done" string="Valid" type="object" class="btn-success" icon="fa-check" confirm="Are you sure that you need to confirm ?" attrs="{'invisible': [('state','=','cancel')]}"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-danger" icon="fa-minus" confirm="Are you sure that you need to cancel?" />
+                        <!--<button name="print_service" string="Print" type="object" class="btn-info" icon="fa-print" style="margin-right:100px" attrs="{'invisible': [('state','=','cancel')]}"/>
+                         --><field name="state" widget="statusbar" statusbar_visible="in progress,done,cancel"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                 <field name="title"/>
+                            </group>
+                            <group>
+                                 <field name="company"/>
+                                 <field name="encadrant"/>
+                                 <field name="Technology"/>
+                            </group>
+                            <group>
+                                <field name="problematic"/>
+                                <field name="Function"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <div style="width:70%;height:25px">
+                                    <field name="description" widget="html" options="{'style-inline': true}"/></div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="plan_action_view">
+            <field name="name">Plan of work</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">plan.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -7,6 +7,7 @@ access_note_note,note_note_manager,model_note_note,base.group_user,1,1,1,1
 access_examen_resultat,examen_resultat_manager,model_examen_resultat,base.group_user,1,1,1,1
 
 access_appreciation_appreciation,appreciation_appreciation_manager,model_appreciation_appreciation,base.group_user,1,1,1,1
-##access_note_eleve,note_eleve_manager,model_note_eleve,base.group_user,1,1,1,1
+#access_note_eleve,note_eleve_manager,model_note_eleve,base.group_user,1,1,1,1
 
 access_listenote_listenote,listenote_listenote_manager,model_listenote_listenote,base.group_user,1,1,1,1
+access_listnote_listnote,listnote_listnote_manager,model_listnote_listnote,base.group_user,1,1,1,1

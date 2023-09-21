@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
+access_convention_convention,convention_convention_manager,model_convention_convention,base.group_user,1,1,1,1
+access_documents_documents,documents_documents_manager,model_documents_documents,base.group_user,1,1,1,1
+#access_fileu_fileu,fileu_fileu_manager,model_fileu_fileu,base.group_user,1,1,1,1
+
+access_import_chart_service,access_import_chart_service,model_import_chart_service,base.group_user,1,1,1,1
+access_plan_plan,access_plan_plan,model_plan_plan,base.group_user,1,1,1,1
 
 
 

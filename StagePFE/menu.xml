@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="StagePFE_menu"
-              name="End Of Studies Internship"/>
+              name="Internship"/>
+         <menuitem id="plan_menu01"
+              name="Plan of Work Managements"
+              parent="StagePFE_menu"
+              sequence="1"
+              action="plan_action_view"/>
+
+          <menuitem id="convention_menu01"
+              name="Conventions Managements"
+              parent="StagePFE_menu"
+               sequence="2"
+              action="convention_action_view"/>
+          <menuitem id="documents_menu01"
+              name="Documents Management"
+              parent="StagePFE_menu"/>
+             <!--<menuitem id="upload_menu01"
+              name="Upload documents"
+              parent="documents_menu01"
+              action="upload_action_view"/>-->
+            <menuitem
+               id="menu_chart"
+               action="act_chart_service"
+               name="Import Charts Of Documents"
+               parent="documents_menu01"/>
+             <menuitem id="load_menu01"
+              name="Load Documents"
+              parent="documents_menu01"
+              action="document_menu_action"/>
 
 
 </odoo>

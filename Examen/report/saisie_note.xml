@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<report
+		id = "report_list_note"
+		model = "eleve.eleve"
+		string = "Liste des élèves"
+		report_type = "qweb-pdf"
+		name = "Examen.note_list_report_view"
+		file = "Examen.note_list_report_view"
+	/>
+		<template id="note_list_report_view">
+			<t t-call="web.html_container">
+				<t t-call="web.report_layout">
+					<div class="page">
+						<h3 style="text-align:center;font-weight: bold;color:DarkBlue">Saisie des notes</h3>
+						<strong>Class :</strong> <t t-esc="liste_des_eleves[0]['class_id']" /><br/>
+						<strong>N° Students :</strong> <t t-esc="len(liste_des_eleves)"/>
+                        <br/><br/>
+						<table width="100%" border="1" class="table table-sm" style="margin:20px">
+							<tr>
+								<th width="10%">Num°</th>
+								<th width="10%">FirstName</th>
+								<th width="10%">LastName</th>
+								<th width="10%">Num_Cin</th>
+								<th width="10%">Note cc</th>
+								<th width="10%">Note DS</th>
+								<th width="10%">Note Exam</th>
+							</tr>
+
+						<t t-foreach="liste_des_eleves" t-as="el">
+								<tr>
+
+									<td><span t-esc = "el['name']"/></td>
+									<td><span t-esc = "el['first_name']"/></td>
+									<td><span t-esc = "el['last_name']"/></td>
+									<td><span t-esc = "el['num_cin']"/></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</t>
+						</table>
+					</div>
+				</t>
+			</t>
+		</template>
+	</odoo>

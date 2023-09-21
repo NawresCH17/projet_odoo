@@ -28,14 +28,15 @@
                 name="Consulter les Notes"
                 parent="noteExamen_root_menu"
                 action="note_menu_action"
-                sequence="2"
+                sequence="3"
 			  />
-	         <!--<menuitem
+	         <menuitem
 		        id="impression_fiche_note_menu"
-		        parent="Examen_root_aze"
+		        parent="noteExamen_root_menu"
 				name="Fiche de note"
-		        action="fiche_note_menu_action"
-		/>-->
+				sequence="2"
+		        action="impression_liste_note_action"/>
+
              <menuitem id="Result_menu"
                  name="Result"
                parent="Examen_root_aze"

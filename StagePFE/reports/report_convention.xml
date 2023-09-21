@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="report_convention"
+            model="convention.convention"
+            string="Convention of internship"
+            report_type="qweb-pdf"
+            name="StagePFE.report_convention_fich"
+            file="StagePFE.report_convention_fich"
+            menu="True"
+        />
+
+        <template id="report_convention_fich">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.report_layout">
+
+                        <div class="page" >
+                            <h2 style="text-align:center;font-weight: bold;">Convention of internship</h2>
+
+                            <table style="width:90%;margin-left:45px;margin-top:35px">
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">First Name </td>
+                                        <td><span style="font-size: 20;" t-field="o.first_name" /></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Last Name: </td>
+                                        <td><span style="font-size: 20;" t-field="o.last_name" /></td></tr>
+									 <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">company</td>
+                                        <td><span style="font-size: 20;" t-field="o.company" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">Encadrant: </td>
+                                        <td><span style="font-size: 20;" t-field="o.encadrant" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">date_ask: </td>
+                                        <td><span style="font-size: 20;" t-field="o.date_ask" /></td></tr>
+                                     <tr>
+                                        <td style="color:DarkBlue;font-weight: bold;">date_response: </td>
+                                        <td><span style="font-size: 20;" t-field="o.date_response" /></td></tr>
+
+                                     <br/><br/>
+
+                            </table>
+                            <br/><br/><br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+</odoo>

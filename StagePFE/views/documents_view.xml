@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="upload_action_view" model="ir.actions.act_window">
+            <field name="name">Upload Documents</field>
+            <field name="res_model">fileu.fileu</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[]</field>
+        </record>
+        <record id="document_tree_view" model="ir.ui.view">
+            <field name="name">documents.documents.tree</field>
+            <field name="model">documents.documents</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documents" create="false">
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="document_menu_action" model="ir.actions.act_window">
+            <field name="name">Load Documents</field>
+            <field name="res_model">documents.documents</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <record id="document_tree_view" model="ir.ui.view">
+            <field name="name">documents.documents.tree</field>
+            <field name="model">documents.documents</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documents">
+                    <field name="name"/>
+                    <field name="bilans"/>
+                    <field name="rapport"/>
+                    <field name="Journaux"/>
+                    <field name="date_response"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="document_form_view" model="ir.ui.view">
+            <field name="name">documents.documents.form</field>
+            <field name="model">documents.documents</field>
+            <field name="arch" type="xml">
+                <form string="Documents">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bilans"/>
+                            <field name="rapport"/>
+                            <field name="Journaux"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="date_response"/>
+                                <div style="width:70%;height:25px">
+                                    <field name="description" widget="html" options="{'style-inline': true}"/>
+                                </div>
+
+                                <br/><br/><br/>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

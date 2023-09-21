@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record model="ir.ui.view" id="liste_note_form_view">
+		<field name="name">List Student Note</field>
+		<field name="model">listnote.listnote</field>
+		<field name="arch" type="xml">
+			<form string="List student">
+				<group>
+					<field name ="class_ids"/>
+				</group>
+
+				<group style="margin-left:450px;">
+					<button  name="imprimer_liste_note" type="object" icon="fa-print" stirng="Print" class="btn-info" />
+					<button special="cancel" string="Cancel" icon="fa-trash"/>
+				</group>
+			</form>
+		</field>
+	</record>
+
+	<record id="impression_liste_note_action" model="ir.actions.act_window">
+		<field name="name">Print student list by class</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">listnote.listnote</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="liste_note_form_view"/>
+        <field name="target">new</field>
+	</record>
+
+
+</odoo>
